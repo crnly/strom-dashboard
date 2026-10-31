@@ -1,0 +1,27 @@
+.DS_Store
+/strom-dashboard
+/bin/
+/coverage.out
+*.test
+
+# Lokale Konfiguration und Zugangsdaten
+.env
+.env.*
+!.env.example
+
+# Terraform-Zustand und lokale Pläne
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfplan
+*.tfvars
+*.tfvars.json
+!*.tfvars.example
+
+# Laufzeitdaten und Sicherungen
+/data/
+/backups/
+*.db
+*.sqlite
+*.sqlite3
+*.dump

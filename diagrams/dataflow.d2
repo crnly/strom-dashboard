@@ -1,0 +1,21 @@
+vars: {d2-config: {theme-id: 201}}
+style: {fill: "#0C1E31"; font-color: "#E4F4FF"}
+# Der zeitliche Ablauf eines geplanten Imports.
+shape: sequence_diagram
+timer: Zeitplan
+import: Go-Import {style: {fill: "#29391E"; stroke: "#E7FF32"; font-color: "#F3FFC5"}}
+api: Energy-Charts
+db: PostgreSQL {style: {fill: "#29391E"; stroke: "#E7FF32"; font-color: "#F3FFC5"}}
+web: Go-Webserver
+browser: Browser
+timer -> import: Import starten {style: {stroke: "#61DCFF"; font-color: "#B8D8F2"}}
+import -> api: Preise für den gewünschten Tag anfordern {style: {stroke: "#61DCFF"; font-color: "#B8D8F2"}}
+api -> import: JSON-Antwort mit Intervallen und Einheiten {style: {stroke: "#61DCFF"; font-color: "#B8D8F2"}}
+import -> import: Antwort prüfen und in unser Datenformat überführen {style: {stroke: "#61DCFF"; font-color: "#B8D8F2"}}
+import -> db: Werte anhand Markt und Intervall aktualisieren {style: {stroke: "#61DCFF"; font-color: "#B8D8F2"}}
+db -> import: Speicherung bestätigen {style: {stroke: "#61DCFF"; font-color: "#B8D8F2"}}
+import -> import: Ergebnis protokollieren und Prozess beenden {style: {stroke: "#61DCFF"; font-color: "#B8D8F2"}}
+browser -> web: Dashboard öffnen {style: {stroke: "#61DCFF"; font-color: "#B8D8F2"}}
+web -> db: Gespeicherte Tageswerte abfragen {style: {stroke: "#61DCFF"; font-color: "#B8D8F2"}}
+db -> web: Preise und Datenstand {style: {stroke: "#61DCFF"; font-color: "#B8D8F2"}}
+web -> browser: HTML und Diagrammdaten {style: {stroke: "#61DCFF"; font-color: "#B8D8F2"}}

@@ -1,0 +1,20 @@
+vars: {d2-config: {theme-id: 201}}
+style: {fill: "#0C1E31"; font-color: "#E4F4FF"}
+# Vorschlag für unser eigenes Datenmodell, keine Energy-Charts-Antwort.
+direction: right
+classes: {
+  node: {style: {fill: "#10273E"; stroke: "#365A79"; font-color: "#E4F4FF"; border-radius: 8}}
+}
+normalized: "Geprüfter Preiswert\nEin Markt · ein Zeitintervall\nEinheit: EUR/MWh" {class: node}
+prices: Preise {
+  shape: sql_table
+  market: text {constraint: primary_key}
+  interval_start: timestamptz {constraint: primary_key}
+  interval_end: timestamptz
+  price_eur_mwh: numeric
+  imported_at: timestamptz
+  style: {fill: "#0C1E31"; stroke: "#E7FF32"; font-color: "#E4F4FF"}
+}
+query: "Tagesabfrage\nMarkt + Zeitraum\nNach Intervall sortiert" {class: node}
+normalized -> prices: einfügen oder aktualisieren {style: {stroke: "#61DCFF"; font-color: "#B8D8F2"}}
+prices -> query: SQL-Abfrage {style: {stroke: "#61DCFF"; font-color: "#B8D8F2"}}
