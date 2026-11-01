@@ -1,6 +1,24 @@
-# strom — Go-Webserver und UI-Prototyp
+# strom — Stromdaten als Cloud-Lernprojekt
+
+**Status: In Entwicklung · Go-Webserver und UI-Prototyp laufen lokal.**
+
+Dieses Portfolio- und Lernprojekt wächst Schritt für Schritt: von einer kleinen lokalen Anwendung zu einem reproduzierbaren Cloud-Deployment. Der Schwerpunkt liegt auf Go, SQL, Docker, Linux, Terraform und einem nachvollziehbaren Entwicklungs- und Deployment-Prozess. Die Anwendungslogik bleibt bewusst klein, damit sich jeder Schritt verstehen und erklären lässt.
 
 Ein kleiner Go-Webserver liefert zwei Ansichten aus: ein Tagesdiagramm mit erfundenen Preisen und eine visuelle Tour durch den geplanten Systemaufbau. Die Oberfläche besteht aus HTML und CSS. Die Navigation funktioniert über URL-Fragmente und CSS `:has()` in aktuellen Browsern.
+
+Die Architekturdiagramme zeigen das Zielbild. Sie beschreiben auch Komponenten, die noch nicht implementiert sind. Eine öffentliche Live-Anwendung gibt es derzeit noch nicht.
+
+## Lernpfad
+
+- [x] Kleines Dashboard und den Tab „So funktioniert’s“ mit D2-Diagrammen gestalten.
+- [x] Oberfläche mit einem Go-Webserver ausliefern und die HTTP-Routen testen.
+- [ ] Echte Stromdaten aus einer öffentlichen API abrufen und Fehlerfälle verstehen.
+- [ ] Daten in PostgreSQL speichern und im Dashboard anzeigen.
+- [ ] Anwendung und Datenbank lokal mit Docker Compose betreiben.
+- [ ] Cloud-Infrastruktur mit Terraform aufsetzen und die Anwendung auf Linux deployen.
+- [ ] Tests und Deployment mit GitHub Actions automatisieren; Betrieb und Wiederherstellung dokumentieren.
+
+Jeder Schritt soll klein, lauffähig und in der Commit-Historie nachvollziehbar bleiben. Die Ordnerstruktur wächst mit dem Code; Kubernetes gehört vorerst nicht zum Umfang.
 
 ## Lokal starten
 
@@ -50,7 +68,7 @@ Die HTTP-Tests prüfen beide Ansichten, öffentliche Dateien, nicht öffentliche
 - `diagrams/`: vier D2-Quellen und die daraus erzeugten SVGs für Systemarchitektur, Datenfluss, Datenmodell und Deployment. Die Grafiken und Erklärungen zeigen einen Planungsstand.
 - Sämtliche Preise sind erfunden und ausdrücklich als Beispieldaten gekennzeichnet.
 - PostgreSQL, API-Abruf, Docker, Terraform und Deployment sind noch nicht implementiert.
-- Ein lokales Git-Repository sichert die Projektgeschichte. Auf GitHub soll es zunächst privat angelegt werden; ein Remote und eine Cloud-Veröffentlichung sind noch nicht eingerichtet.
+- Die Commit-Historie dokumentiert den Lernfortschritt. Ein Cloud-Deployment ist noch nicht eingerichtet.
 
 Die Struktur wächst mit den tatsächlich umgesetzten Schritten.
 
