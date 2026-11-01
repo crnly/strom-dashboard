@@ -2,7 +2,7 @@
 
 **Status: In Entwicklung · Go-Webserver und UI-Prototyp laufen lokal.**
 
-Dieses Portfolio- und Lernprojekt wächst Schritt für Schritt: von einer kleinen lokalen Anwendung zu einem reproduzierbaren Cloud-Deployment. Der Schwerpunkt liegt auf Go, SQL, Docker, Linux, Terraform und einem nachvollziehbaren Entwicklungs- und Deployment-Prozess. Die Anwendungslogik bleibt bewusst klein, damit sich jeder Schritt verstehen und erklären lässt.
+Dieses Lernprojekt wächst Schritt für Schritt: von einer kleinen lokalen Anwendung zu einem reproduzierbaren Cloud-Deployment. Der Schwerpunkt liegt auf Go, SQL, Docker, Linux, Terraform und einem nachvollziehbaren Entwicklungs- und Deployment-Prozess. Die Anwendungslogik bleibt bewusst klein, damit sich jeder Schritt verstehen und erklären lässt.
 
 Ein kleiner Go-Webserver liefert zwei Ansichten aus: ein Tagesdiagramm mit erfundenen Preisen und eine visuelle Tour durch den geplanten Systemaufbau. Die Oberfläche besteht aus HTML und CSS. Die Navigation funktioniert über URL-Fragmente und CSS `:has()` in aktuellen Browsern.
 
