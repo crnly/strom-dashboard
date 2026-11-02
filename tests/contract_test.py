@@ -1,4 +1,4 @@
-"""Derselbe HTTP-Vertrag gegen alle drei echten Serverprozesse."""
+"""HTTP-Vertrag zwischen TypeScript-Frontend und Python-Backend."""
 
 import http.client
 import json
@@ -7,36 +7,29 @@ from pathlib import Path
 import re
 import selectors
 import subprocess
+import sys
 import time
 import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
-COMMANDS = {
-    "python": ["python3", "backends/python/server.py"],
-    "go": [str(ROOT / "bin/strom-dashboard")],
-    "typescript": ["node", "dist/backends/typescript/server.js"],
-}
 
 
 class BackendContract(unittest.TestCase):
-    def test_all_backends(self):
-        for backend, command in COMMANDS.items():
-            with self.subTest(backend=backend):
-                env = {**os.environ, "PORT": "0"}
-                env.pop("ADDR", None)
-                with subprocess.Popen(command, cwd=ROOT, env=env, stdout=subprocess.PIPE,
-                                      stderr=subprocess.STDOUT, text=True) as process:
-                    try:
-                        port = self.wait_for_start(process)
-                        self.check_contract(port)
-                        print(f"  {backend}: gemeinsamer HTTP-Vertrag erfüllt", flush=True)
-                    finally:
-                        process.terminate()
-                        try:
-                            process.wait(timeout=5)
-                        except subprocess.TimeoutExpired:
-                            process.kill()
-                            process.wait()
+    def test_python_backend(self):
+        env = {**os.environ, "PORT": "0"}
+        command = [sys.executable, "backend/server.py"]
+        with subprocess.Popen(command, cwd=ROOT, env=env, stdout=subprocess.PIPE,
+                              stderr=subprocess.STDOUT, text=True) as process:
+            try:
+                port = self.wait_for_start(process)
+                self.check_contract(port)
+            finally:
+                process.terminate()
+                try:
+                    process.wait(timeout=5)
+                except subprocess.TimeoutExpired:
+                    process.kill()
+                    process.wait()
 
     def wait_for_start(self, process):
         lines = []
@@ -101,8 +94,8 @@ class BackendContract(unittest.TestCase):
                 status, headers, _body = self.request(port, path, method)
                 self.assertEqual(status, 405, (method, path))
                 self.assertEqual(set(headers["Allow"].replace(" ", "").split(",")), {"GET", "HEAD"})
-        for path in ("/missing", "/main.go", "/go.mod", "/README.md", "/.env",
-                     "/frontend/main.ts", "/backends/python/server.py",
+        for path in ("/missing", "/README.md", "/.env",
+                     "/frontend/main.ts", "/backend/server.py",
                      "/dist/frontend/main.js", "/api/demo-prices.json", "/diagrams/",
                      "/diagrams/missing.svg"):
             status, _headers, _body = self.request(port, path)

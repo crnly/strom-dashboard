@@ -71,7 +71,7 @@
           <div class="system-pills"><span>Architektur als Code</span><span>4 echte D2-Diagramme</span><span>Schritt für Schritt erklärt</span></div>
         </div>
 
-        <div class="planning-note"><span class="status-dot"></span><p><strong>Geplanter Zielzustand.</strong> Das TypeScript-Frontend lädt Beispieldaten über eine gemeinsame HTTP-API. Wahlweise liefert Python, Go oder TypeScript dieselbe Anwendung aus. Datenimport, Datenbank, Cloud und Deployment folgen.</p></div>
+        <div class="planning-note"><span class="status-dot"></span><p><strong>Geplanter Zielzustand.</strong> Das TypeScript-Frontend lädt Beispieldaten über eine gemeinsame HTTP-API. Ein Python-Backend liefert die Anwendung aus. Datenimport, Datenbank, Cloud und Deployment folgen.</p></div>
 
         <nav class="system-index" aria-label="Inhalt der Systemdokumentation">
           <a href="#architecture">01 Architektur</a><a href="#data-journey">02 Datenweg</a><a href="#data-model">03 Datenmodell</a><a href="#deployment">04 Deployment</a><a href="#operations">05 Betrieb</a>
@@ -79,15 +79,15 @@
 
         <section id="architecture" class="system-section" aria-labelledby="architecture-title">
           <div class="section-heading"><div><p class="eyebrow">01 · Systemarchitektur</p><h2 id="architecture-title">Ein Server. Sichtbare Verantwortlichkeiten.</h2></div><span class="badge">Zielbild</span></div>
-          <p class="section-lead">Das Backend ist austauschbar: Python, Go oder TypeScript erfüllen denselben API-Vertrag. Der Import ist als späterer Hintergrundprozess geplant. Die einen Daten werden regelmäßig abgeholt, die anderen auf Anfrage ausgeliefert. PostgreSQL verbindet beide Abläufe.</p>
+          <p class="section-lead">Das TypeScript-Frontend spricht über eine dokumentierte HTTP-API mit dem Python-Backend. Der Import ist als späterer Hintergrundprozess geplant. Die einen Daten werden regelmäßig abgeholt, die anderen auf Anfrage ausgeliefert. PostgreSQL verbindet beide Abläufe.</p>
           <figure class="diagram-figure">
             <div class="diagram-toolbar"><span><span class="status-dot"></span> system.d2 → system.svg</span><div><a href="diagrams/system.d2" download>D2-Quelle ↓</a><a href="diagrams/system.svg" target="_blank" rel="noopener">Vollansicht ↗</a></div></div>
-            <div class="diagram-canvas overview-canvas"><img src="diagrams/system.svg" width="1165" height="1260" alt="Geplante Architektur: Browser über Caddy zum gewählten Backend und PostgreSQL. Energy-Charts liefert Daten an den zeitgesteuerten Import. Terraform stellt den Linux-Server bereit."></div>
+            <div class="diagram-canvas overview-canvas"><img src="diagrams/system.svg" width="1147" height="1260" alt="Geplante Architektur: Browser über Caddy zum Python-Backend und PostgreSQL. Energy-Charts liefert Daten an den zeitgesteuerten Import. Terraform stellt den Linux-Server bereit."></div>
             <figcaption>Durchgezogene Pfeile zeigen Daten- und Anfragewege. Gestrichelte Pfeile zeigen Bereitstellung und geplante Starts. Das Bild wurde aus der verlinkten D2-Datei erzeugt.</figcaption>
           </figure>
           <div class="responsibilities">
-            <article><span class="eyebrow">Zugriff</span><h3>Caddy</h3><p>Nimmt HTTPS-Verbindungen entgegen und leitet Anfragen an das gewählte Backend weiter.</p></article>
-            <article><span class="eyebrow">Anwendung</span><h3>Backend nach Wahl</h3><p>Python, Go oder TypeScript liefern dieselbe Website und Demo-API. Ein Hintergrundimport folgt später.</p></article>
+            <article><span class="eyebrow">Zugriff</span><h3>Caddy</h3><p>Nimmt HTTPS-Verbindungen entgegen und leitet Anfragen an das Python-Backend weiter.</p></article>
+            <article><span class="eyebrow">Anwendung</span><h3>Python</h3><p>Das Backend liefert die Website und die Demo-API. Ein Hintergrundimport folgt später.</p></article>
             <article><span class="eyebrow">Speicherung</span><h3>PostgreSQL</h3><p>Hält die Preisintervalle dauerhaft vor. Ein neuer Anwendungscontainer ersetzt diese Daten nicht.</p></article>
           </div>
           <details class="explain-detail"><summary>Warum ein einzelner Server?</summary><p>Er hält Ressourcen, Kosten und Fehlerwege überschaubar. Für diese Portfolio-Anwendung ist das ein bewusster Startpunkt. Fällt der Server aus, fällt auch die Anwendung aus. Eine verteilte Architektur ist hier noch kein Lernziel.</p></details>
@@ -98,7 +98,7 @@
           <p class="section-lead">Ein Website-Besuch startet keinen Abruf bei der Datenquelle. Der Import läuft unabhängig davon. Die Reihenfolge der Nachrichten lässt sich im Sequenzdiagramm von oben nach unten lesen.</p>
           <figure class="diagram-figure">
             <div class="diagram-toolbar"><span>dataflow.d2 → dataflow.svg</span><div><a href="diagrams/dataflow.d2" download>D2-Quelle ↓</a><a href="diagrams/dataflow.svg" target="_blank" rel="noopener">Vollansicht ↗</a></div></div>
-            <div class="diagram-canvas"><img loading="lazy" src="diagrams/dataflow.svg" width="1469" height="1396" alt="Zeitlicher Ablauf: Zeitplan startet Import, Energy-Charts antwortet mit JSON, das Backend validiert und speichert. Später fragt der Browser das Backend nach den gespeicherten Tagesdaten."></div>
+            <div class="diagram-canvas"><img loading="lazy" src="diagrams/dataflow.svg" width="1464" height="1396" alt="Zeitlicher Ablauf: Zeitplan startet Import, Energy-Charts antwortet mit JSON, das Backend validiert und speichert. Später fragt der Browser das Backend nach den gespeicherten Tagesdaten."></div>
             <figcaption>Oben: der geplante Hintergrundimport. Unten: eine spätere Anfrage eines Besuchers. Beides kann unabhängig voneinander stattfinden.</figcaption>
           </figure>
           <div class="walkthrough">

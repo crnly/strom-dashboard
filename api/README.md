@@ -1,6 +1,6 @@
-# Gemeinsame HTTP-Schnittstelle · Demo v1
+# HTTP-Schnittstelle · Demo v1
 
-Python, Go und TypeScript sind alternative Implementierungen derselben Anwendung. Es läuft jeweils eines der Backends. Frontend und Backend kommen von derselben Adresse; das Frontend verwendet relative URLs und braucht beim Wechsel keine neue Konfiguration.
+Das TypeScript-Frontend lädt Daten vom Python-Backend. Beide kommen von derselben Adresse; das Frontend verwendet relative URLs. Ein späteres Backend in einer anderen Sprache müsste diesen Vertrag erfüllen, damit das Frontend unverändert weiterarbeiten kann. Aktuell implementieren und pflegen wir nur Python.
 
 ## `GET /api/prices`
 
@@ -22,12 +22,12 @@ Der Endpunkt akzeptiert noch keine Datums- oder Marktauswahl. Query-Parameter ä
 
 Antwort: HTTP 200, `Content-Type: application/json`, `{"status":"ok"}`. Prüft nur, ob der Webprozess antwortet.
 
-## Gemeinsames Verhalten
+## HTTP-Verhalten
 
-- `GET /`, `/styles.css`, `/assets/main.js` und die vier Diagramme als SVG/D2 liefern dieselben Frontenddateien aus.
+- `GET /`, `/styles.css`, `/assets/main.js` und die vier Diagramme als SVG/D2 liefern die Frontenddateien aus.
 - `HEAD` liefert für diese Routen die gleichen Statuscodes und Metadaten ohne Antwortkörper.
 - Unbekannte Pfade antworten mit 404. Quellcode, API-Fixture und Verzeichnislisten sind nicht direkt öffentlich erreichbar.
 - `POST`, `PUT`, `PATCH`, `DELETE` und `OPTIONS` auf vorhandene Routen antworten mit 405. Es gibt keine Schreiboperationen.
 - Das Frontend zeigt Ladefehler oder unerwartete Daten an, statt sie als Preise zu zeichnen.
 
-`tests/contract_test.py` prüft denselben Vertrag gegen alle drei gestarteten Backends. TypeScript-Typen allein sichern die Schnittstelle zu Python und Go nicht ab.
+`tests/contract_test.py` prüft diesen Vertrag gegen einen gestarteten Python-Server. TypeScript-Typen allein prüfen keine HTTP-Antworten von Python; deshalb validiert das Frontend die empfangenen Daten zusätzlich zur Laufzeit.

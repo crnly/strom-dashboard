@@ -3,10 +3,10 @@ style: {fill: "#0C1E31"; font-color: "#E4F4FF"}
 # Der zeitliche Ablauf eines geplanten Imports.
 shape: sequence_diagram
 timer: Zeitplan
-import: Backend-Import {style: {fill: "#29391E"; stroke: "#E7FF32"; font-color: "#F3FFC5"}}
+import: Python-Import {style: {fill: "#29391E"; stroke: "#E7FF32"; font-color: "#F3FFC5"}}
 api: Energy-Charts
 db: PostgreSQL {style: {fill: "#29391E"; stroke: "#E7FF32"; font-color: "#F3FFC5"}}
-web: Backend nach Wahl
+web: Python-Backend
 browser: Browser
 timer -> import: Import starten {style: {stroke: "#61DCFF"; font-color: "#B8D8F2"}}
 import -> api: Preise für den gewünschten Tag anfordern {style: {stroke: "#61DCFF"; font-color: "#B8D8F2"}}

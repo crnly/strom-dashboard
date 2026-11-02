@@ -2,7 +2,7 @@
   "name": "strom-dashboard",
   "version": "0.1.0",
   "private": true,
-  "description": "Ein gemeinsames TypeScript-Frontend mit austauschbaren Lern-Backends",
+  "description": "Stromdashboard mit TypeScript-Frontend und Python-Backend",
   "type": "module",
   "engines": {
     "node": ">=24"
@@ -10,14 +10,10 @@
   "scripts": {
     "build": "tsc",
     "check": "tsc --noEmit",
-    "start": "npm run start:python",
-    "start:python": "python3 backends/python/server.py",
-    "start:go": "go run .",
-    "start:typescript": "node dist/backends/typescript/server.js",
-    "test": "npm run build && go test ./... && go vet ./... && go build -o bin/strom-dashboard . && python3 tests/contract_test.py"
+    "start": "python3 backend/server.py",
+    "test": "npm run build && python3 tests/contract_test.py"
   },
   "devDependencies": {
-    "@types/node": "24.19.2",
     "typescript": "7.0.2"
   }
 }

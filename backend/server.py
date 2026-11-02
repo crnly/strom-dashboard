@@ -1,11 +1,11 @@
-"""Kleiner lokaler Lernserver. Gleiche API wie Go und TypeScript."""
+"""Lokaler Python-Lernserver für das TypeScript-Frontend."""
 
 import os
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import urlsplit
 
-ROOT = Path(__file__).resolve().parents[2]
+ROOT = Path(__file__).resolve().parents[1]
 
 
 def public_file(path):
