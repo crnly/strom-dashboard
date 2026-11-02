@@ -25,3 +25,9 @@
 *.sqlite
 *.sqlite3
 *.dump
+
+# TypeScript-Build und lokale Python-Dateien
+node_modules/
+/dist/
+__pycache__/
+*.pyc

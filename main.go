@@ -4,6 +4,7 @@ import (
 	"embed"
 	"fmt"
 	"log/slog"
+	"net"
 	"net/http"
 	"os"
 	"time"
@@ -12,7 +13,7 @@ import (
 // Die Oberfläche wird beim Kompilieren in das Programm aufgenommen.
 // Andere Projektdateien wie Konfiguration oder Go-Code werden nicht ausgeliefert.
 //
-//go:embed index.html styles.css diagrams/*.svg diagrams/*.d2
+//go:embed index.html styles.css dist/frontend/main.js api/demo-prices.json diagrams/*.svg diagrams/*.d2
 var assets embed.FS
 
 func main() {
@@ -23,7 +24,11 @@ func main() {
 
 	addr := os.Getenv("ADDR")
 	if addr == "" {
-		addr = "127.0.0.1:4176"
+		port := os.Getenv("PORT")
+		if port == "" {
+			port = "4176"
+		}
+		addr = net.JoinHostPort("127.0.0.1", port)
 	}
 
 	server := &http.Server{
@@ -32,8 +37,13 @@ func main() {
 		ReadHeaderTimeout: 5 * time.Second,
 	}
 
-	slog.Info("Webserver startet", "address", addr)
-	if err := server.ListenAndServe(); err != nil {
+	listener, err := net.Listen("tcp", addr)
+	if err != nil {
+		slog.Error("Webserver kann nicht starten", "error", err)
+		os.Exit(1)
+	}
+	fmt.Printf("Listening http://%s (Go)\n", listener.Addr())
+	if err := server.Serve(listener); err != nil {
 		slog.Error("Webserver beendet", "error", err)
 		os.Exit(1)
 	}
@@ -47,10 +57,27 @@ func newHandler() http.Handler {
 	mux.Handle("GET /{$}", files)
 	mux.Handle("GET /styles.css", files)
 	mux.Handle("GET /diagrams/{filename}", files)
+	mux.Handle("GET /assets/main.js", embeddedFile("dist/frontend/main.js", "text/javascript; charset=utf-8"))
+	mux.Handle("GET /api/prices", embeddedFile("api/demo-prices.json", "application/json"))
 	mux.HandleFunc("GET /healthz", func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/json")
 		fmt.Fprintln(w, `{"status":"ok"}`)
 	})
 
 	return mux
+}
+
+func embeddedFile(path, contentType string) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		data, err := assets.ReadFile(path)
+		if err != nil {
+			http.Error(w, "Datei nicht verfügbar", http.StatusInternalServerError)
+			return
+		}
+		w.Header().Set("Content-Type", contentType)
+		w.Header().Set("Content-Length", fmt.Sprint(len(data)))
+		if r.Method != http.MethodHead {
+			w.Write(data)
+		}
+	}
 }

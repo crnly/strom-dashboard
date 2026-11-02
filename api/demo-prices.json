@@ -1,0 +1,9 @@
+{
+  "demo": true,
+  "date": "2026-10-31",
+  "market": "DE-LU",
+  "timezone": "Europe/Berlin",
+  "unit": "EUR/MWh",
+  "interval": "1 hour",
+  "prices": [68, 63, 58, 54, 50, 55, 65, 80, 90, 76, 48, 34, 20, 12, 10, 18, 38, 63, 92, 108, 100, 87, 78, 72]
+}

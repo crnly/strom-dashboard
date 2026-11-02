@@ -7,7 +7,7 @@ classes: {
   app: {style: {fill: "#29391E"; stroke: "#E7FF32"; font-color: "#F3FFC5"; border-radius: 8}}
   control: {style: {stroke: "#E7FF32"; stroke-dash: 5; font-color: "#DCEB9B"}}
 }
-browser: "Browser\nHTML · CSS · Diagramm" {class: node}
+browser: "Browser\nHTML · CSS · TypeScript" {class: node}
 source: "Energy-Charts\nExterne Datenquelle" {shape: cloud; class: node}
 terraform: "Terraform\nServer · IP · Firewall" {class: node}
 server: "Hetzner Cloud · Ubuntu Linux · geplant" {
@@ -15,9 +15,9 @@ server: "Hetzner Cloud · Ubuntu Linux · geplant" {
   containers: "Docker Compose" {
     style: {fill: "#0C1E31"; stroke: "#24415D"; border-radius: 10}
     caddy: "Caddy\nHTTPS & Weiterleitung" {class: node}
-    web: "Go · serve\nHTML & JSON-Endpunkte" {class: app}
+    web: "Backend nach Wahl\nPython · Go · TypeScript" {class: app}
     db: "PostgreSQL\nPreise & Datenstand" {shape: cylinder; class: node}
-    import: "Go · ingest\nTemporärer Import-Container" {class: app}
+    import: "Import · geplant\nTemporärer Container" {class: app}
   }
   timer: "systemd-Timer\nRegelmäßiger Start" {class: node}
   disk: "Dauerhafter Speicher\nBleibt bei Containerwechsel" {shape: cylinder; class: node}

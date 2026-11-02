@@ -6,6 +6,7 @@
   <meta name="description" content="Ein kleiner Strompreis-Prototyp und ein verständlicher Blick auf seinen geplanten technischen Aufbau.">
   <title>strom — Ein kleines Cloud-Projekt</title>
   <link rel="stylesheet" href="styles.css">
+  <script type="module" src="/assets/main.js"></script>
 </head>
 <body>
   <a class="skip-link" href="#content">Zum Inhalt</a>
@@ -16,7 +17,7 @@
         <a class="tab dashboard-tab" href="#dashboard">Dashboard</a>
         <a class="tab system-tab" href="#system">So funktioniert’s <span aria-hidden="true">↗</span></a>
       </nav>
-      <span class="prototype"><span class="status-dot"></span> Go · Lokal</span>
+      <span class="prototype"><span class="status-dot"></span> Demo · Lokal</span>
     </header>
 
     <main id="content">
@@ -36,43 +37,20 @@
             <span class="badge">Beispieldaten</span>
           </div>
 
-          <div class="chart" role="img" aria-label="Erfundene stündliche Strompreise in Euro pro Megawattstunde. In diesem Beispiel sinkt der Preis mittags und steigt abends. Alle 24 Werte stehen unter dem Diagramm als JSON bereit.">
+          <div class="chart" role="img" aria-busy="true" aria-label="Beispieldaten werden geladen.">
             <span class="axis-unit">€/MWh</span>
             <div class="y-axis" aria-hidden="true"><span>120</span><span>80</span><span>40</span><span>0</span></div>
             <div class="plot" aria-hidden="true">
               <div class="gridlines"><i></i><i></i><i></i><i></i></div>
-              <div class="bars">
-                <span class="bar" style="--price:68" title="00:00–01:00 · 68 €/MWh"></span>
-                <span class="bar" style="--price:63" title="01:00–02:00 · 63 €/MWh"></span>
-                <span class="bar" style="--price:58" title="02:00–03:00 · 58 €/MWh"></span>
-                <span class="bar" style="--price:54" title="03:00–04:00 · 54 €/MWh"></span>
-                <span class="bar" style="--price:50" title="04:00–05:00 · 50 €/MWh"></span>
-                <span class="bar" style="--price:55" title="05:00–06:00 · 55 €/MWh"></span>
-                <span class="bar" style="--price:65" title="06:00–07:00 · 65 €/MWh"></span>
-                <span class="bar" style="--price:80" title="07:00–08:00 · 80 €/MWh"></span>
-                <span class="bar" style="--price:90" title="08:00–09:00 · 90 €/MWh"></span>
-                <span class="bar" style="--price:76" title="09:00–10:00 · 76 €/MWh"></span>
-                <span class="bar" style="--price:48" title="10:00–11:00 · 48 €/MWh"></span>
-                <span class="bar" style="--price:34" title="11:00–12:00 · 34 €/MWh"></span>
-                <span class="bar" style="--price:20" title="12:00–13:00 · 20 €/MWh"></span>
-                <span class="bar" style="--price:12" title="13:00–14:00 · 12 €/MWh"></span>
-                <span class="bar" style="--price:10" title="14:00–15:00 · 10 €/MWh"></span>
-                <span class="bar" style="--price:18" title="15:00–16:00 · 18 €/MWh"></span>
-                <span class="bar" style="--price:38" title="16:00–17:00 · 38 €/MWh"></span>
-                <span class="bar" style="--price:63" title="17:00–18:00 · 63 €/MWh"></span>
-                <span class="bar" style="--price:92" title="18:00–19:00 · 92 €/MWh"></span>
-                <span class="bar" style="--price:108" title="19:00–20:00 · 108 €/MWh"></span>
-                <span class="bar" style="--price:100" title="20:00–21:00 · 100 €/MWh"></span>
-                <span class="bar" style="--price:87" title="21:00–22:00 · 87 €/MWh"></span>
-                <span class="bar" style="--price:78" title="22:00–23:00 · 78 €/MWh"></span>
-                <span class="bar" style="--price:72" title="23:00–24:00 · 72 €/MWh"></span>
-              </div>
+              <div class="bars"></div>
             </div>
             <div class="x-axis" aria-hidden="true"><span>00:00</span><span>06:00</span><span>12:00</span><span>18:00</span><span>24:00</span></div>
           </div>
 
-          <div class="chart-caption"><span>24 erfundene Stundenwerte</span><span>Europe/Berlin</span></div>
+          <div class="chart-caption"><span id="data-status" role="status">Beispieldaten werden geladen …</span><span>Europe/Berlin</span></div>
         </div>
+
+        <noscript><p class="small-note">Das Dashboard benötigt JavaScript zum Laden der Beispieldaten. Die Systemdokumentation ist auch ohne JavaScript lesbar.</p></noscript>
 
         <div class="below-chart">
           <p><strong>Erst die Oberfläche, dann die Infrastruktur.</strong><br>Die Daten sind illustrativ. Später kommen sie aus der <a href="https://api.energy-charts.info/">Energy-Charts API</a>. Börsenpreise entsprechen nicht deinem Haushaltsstrompreis.</p>
@@ -81,14 +59,7 @@
 
         <details class="data-details">
           <summary>Beispieldaten ansehen <span>JSON</span></summary>
-          <pre><code>{
-  "demo": true,
-  "date": "2026-10-31",
-  "unit": "EUR/MWh",
-  "interval": "1 hour",
-  "prices": [68, 63, 58, 54, 50, 55, 65, 80, 90, 76, 48, 34,
-             20, 12, 10, 18, 38, 63, 92, 108, 100, 87, 78, 72]
-}</code></pre>
+          <pre><code id="prices-json">Beispieldaten werden geladen …</code></pre>
         </details>
       </section>
 
@@ -100,7 +71,7 @@
           <div class="system-pills"><span>Architektur als Code</span><span>4 echte D2-Diagramme</span><span>Schritt für Schritt erklärt</span></div>
         </div>
 
-        <div class="planning-note"><span class="status-dot"></span><p><strong>Geplanter Zielzustand.</strong> Der Go-Webserver liefert die Oberfläche und diese D2-Diagramme bereits aus. Datenimport, Datenbank, Cloud und Deployment folgen.</p></div>
+        <div class="planning-note"><span class="status-dot"></span><p><strong>Geplanter Zielzustand.</strong> Das TypeScript-Frontend lädt Beispieldaten über eine gemeinsame HTTP-API. Wahlweise liefert Python, Go oder TypeScript dieselbe Anwendung aus. Datenimport, Datenbank, Cloud und Deployment folgen.</p></div>
 
         <nav class="system-index" aria-label="Inhalt der Systemdokumentation">
           <a href="#architecture">01 Architektur</a><a href="#data-journey">02 Datenweg</a><a href="#data-model">03 Datenmodell</a><a href="#deployment">04 Deployment</a><a href="#operations">05 Betrieb</a>
@@ -108,15 +79,15 @@
 
         <section id="architecture" class="system-section" aria-labelledby="architecture-title">
           <div class="section-heading"><div><p class="eyebrow">01 · Systemarchitektur</p><h2 id="architecture-title">Ein Server. Sichtbare Verantwortlichkeiten.</h2></div><span class="badge">Zielbild</span></div>
-          <p class="section-lead">Der Webserver und der Import nutzen dieselbe Go-Codebasis. Die einen Daten werden regelmäßig abgeholt, die anderen auf Anfrage ausgeliefert. PostgreSQL verbindet beide Abläufe.</p>
+          <p class="section-lead">Das Backend ist austauschbar: Python, Go oder TypeScript erfüllen denselben API-Vertrag. Der Import ist als späterer Hintergrundprozess geplant. Die einen Daten werden regelmäßig abgeholt, die anderen auf Anfrage ausgeliefert. PostgreSQL verbindet beide Abläufe.</p>
           <figure class="diagram-figure">
             <div class="diagram-toolbar"><span><span class="status-dot"></span> system.d2 → system.svg</span><div><a href="diagrams/system.d2" download>D2-Quelle ↓</a><a href="diagrams/system.svg" target="_blank" rel="noopener">Vollansicht ↗</a></div></div>
-            <div class="diagram-canvas overview-canvas"><img src="diagrams/system.svg" width="1228" height="1260" alt="Geplante Architektur: Browser über Caddy zu Go und PostgreSQL. Energy-Charts liefert Daten an den zeitgesteuerten Go-Import. Terraform stellt den Linux-Server bereit."></div>
+            <div class="diagram-canvas overview-canvas"><img src="diagrams/system.svg" width="1165" height="1260" alt="Geplante Architektur: Browser über Caddy zum gewählten Backend und PostgreSQL. Energy-Charts liefert Daten an den zeitgesteuerten Import. Terraform stellt den Linux-Server bereit."></div>
             <figcaption>Durchgezogene Pfeile zeigen Daten- und Anfragewege. Gestrichelte Pfeile zeigen Bereitstellung und geplante Starts. Das Bild wurde aus der verlinkten D2-Datei erzeugt.</figcaption>
           </figure>
           <div class="responsibilities">
-            <article><span class="eyebrow">Zugriff</span><h3>Caddy</h3><p>Nimmt HTTPS-Verbindungen entgegen und leitet Anfragen an den Go-Webserver weiter.</p></article>
-            <article><span class="eyebrow">Anwendung</span><h3>Go</h3><p><code>serve</code> liefert die Website. <code>ingest</code> importiert Daten und beendet sich anschließend.</p></article>
+            <article><span class="eyebrow">Zugriff</span><h3>Caddy</h3><p>Nimmt HTTPS-Verbindungen entgegen und leitet Anfragen an das gewählte Backend weiter.</p></article>
+            <article><span class="eyebrow">Anwendung</span><h3>Backend nach Wahl</h3><p>Python, Go oder TypeScript liefern dieselbe Website und Demo-API. Ein Hintergrundimport folgt später.</p></article>
             <article><span class="eyebrow">Speicherung</span><h3>PostgreSQL</h3><p>Hält die Preisintervalle dauerhaft vor. Ein neuer Anwendungscontainer ersetzt diese Daten nicht.</p></article>
           </div>
           <details class="explain-detail"><summary>Warum ein einzelner Server?</summary><p>Er hält Ressourcen, Kosten und Fehlerwege überschaubar. Für diese Portfolio-Anwendung ist das ein bewusster Startpunkt. Fällt der Server aus, fällt auch die Anwendung aus. Eine verteilte Architektur ist hier noch kein Lernziel.</p></details>
@@ -127,14 +98,14 @@
           <p class="section-lead">Ein Website-Besuch startet keinen Abruf bei der Datenquelle. Der Import läuft unabhängig davon. Die Reihenfolge der Nachrichten lässt sich im Sequenzdiagramm von oben nach unten lesen.</p>
           <figure class="diagram-figure">
             <div class="diagram-toolbar"><span>dataflow.d2 → dataflow.svg</span><div><a href="diagrams/dataflow.d2" download>D2-Quelle ↓</a><a href="diagrams/dataflow.svg" target="_blank" rel="noopener">Vollansicht ↗</a></div></div>
-            <div class="diagram-canvas"><img loading="lazy" src="diagrams/dataflow.svg" width="1412" height="1216" alt="Zeitlicher Ablauf: Zeitplan startet Import, Energy-Charts antwortet mit JSON, Go validiert und speichert. Später fragt der Browser Go nach den gespeicherten Tagesdaten."></div>
+            <div class="diagram-canvas"><img loading="lazy" src="diagrams/dataflow.svg" width="1469" height="1396" alt="Zeitlicher Ablauf: Zeitplan startet Import, Energy-Charts antwortet mit JSON, das Backend validiert und speichert. Später fragt der Browser das Backend nach den gespeicherten Tagesdaten."></div>
             <figcaption>Oben: der geplante Hintergrundimport. Unten: eine spätere Anfrage eines Besuchers. Beides kann unabhängig voneinander stattfinden.</figcaption>
           </figure>
           <div class="walkthrough">
-            <article><span>01</span><h3>Abrufen</h3><p>Go fragt einen begrenzten Zeitraum ab und behandelt HTTP-Fehler, Zeitüberschreitungen und Abruflimits.</p></article>
+            <article><span>01</span><h3>Abrufen</h3><p>Der geplante Import fragt einen begrenzten Zeitraum ab und behandelt HTTP-Fehler, Zeitüberschreitungen und Abruflimits.</p></article>
             <article><span>02</span><h3>Validieren</h3><p>Zeitpunkte, Einheit und Werte müssen zum erwarteten Format passen. Fehlende Werte bleiben fehlend.</p></article>
             <article><span>03</span><h3>Speichern</h3><p>Markt und Intervallbeginn identifizieren einen Wert. Wiederholte Imports aktualisieren ihn, statt Duplikate anzulegen.</p></article>
-            <article><span>04</span><h3>Ausliefern</h3><p>Go liest die Tageswerte aus PostgreSQL. Datenstand und Lücken sollen in der Oberfläche erkennbar bleiben.</p></article>
+            <article><span>04</span><h3>Ausliefern</h3><p>Das Backend soll die Tageswerte aus PostgreSQL lesen; TypeScript zeichnet daraus das Diagramm. Datenstand und Lücken sollen in der Oberfläche erkennbar bleiben.</p></article>
           </div>
           <details class="explain-detail"><summary>Was passiert, wenn die Datenquelle ausfällt?</summary><p>Die bisherigen Daten bleiben erhalten. Der Import soll den Fehler protokollieren und bei einem späteren Lauf erneut abrufen. Die Website darf einen alten Datenstand nicht als frisch ausgeben. Ein erfolgreich gestarteter Prozess allein beweist noch keinen erfolgreichen Import.</p></details>
         </section>
@@ -166,7 +137,7 @@
             <summary><span>Den vollständigen Deployment-Weg aufklappen</span><span class="detail-label">D2-Diagramm</span></summary>
             <figure class="diagram-figure">
               <div class="diagram-toolbar"><span>deployment.d2 → deployment.svg</span><div><a href="diagrams/deployment.d2" download>D2-Quelle ↓</a><a href="diagrams/deployment.svg" target="_blank" rel="noopener">Vollansicht ↗</a></div></div>
-              <div class="diagram-canvas deployment-canvas"><img loading="lazy" src="diagrams/deployment.svg" width="866" height="1530" alt="Geplanter Veröffentlichungsweg: GitHub zu Tests, D2-Build und Terraform-Plan. Ein Docker-Image wird versioniert in GHCR veröffentlicht und auf dem eingerichteten Server gestartet und geprüft."></div>
+              <div class="diagram-canvas deployment-canvas"><img loading="lazy" src="diagrams/deployment.svg" width="981" height="1530" alt="Geplanter Veröffentlichungsweg: GitHub zu Tests, D2-Build und Terraform-Plan. Ein Docker-Image wird versioniert in GHCR veröffentlicht und auf dem eingerichteten Server gestartet und geprüft."></div>
               <figcaption>Ein Infrastruktur-Plan, ein erfolgreich gebautes Image und eine funktionierende Veröffentlichung sind unterschiedliche Prüfschritte.</figcaption>
             </figure>
           </details>
@@ -187,7 +158,7 @@
       </section>
     </main>
 
-    <footer class="footer"><span>strom. <span class="footer-note">Ein Lernprojekt, Schritt für Schritt.</span></span><span>Go + HTML + CSS <span class="footer-dot">·</span> Lokal</span></footer>
+    <footer class="footer"><span>strom. <span class="footer-note">Ein Lernprojekt, Schritt für Schritt.</span></span><span>TypeScript + HTML + CSS <span class="footer-dot">·</span> Lokal</span></footer>
   </div>
 </body>
 </html>

@@ -29,6 +29,8 @@ func TestPublicAssetsAndPrivatePaths(t *testing.T) {
 		want int
 	}{
 		{"/styles.css", http.StatusOK},
+		{"/assets/main.js", http.StatusOK},
+		{"/api/prices", http.StatusOK},
 		{"/diagrams/system.svg", http.StatusOK},
 		{"/diagrams/dataflow.svg", http.StatusOK},
 		{"/diagrams/database.svg", http.StatusOK},
@@ -40,6 +42,9 @@ func TestPublicAssetsAndPrivatePaths(t *testing.T) {
 		{"/go.mod", http.StatusNotFound},
 		{"/README.md", http.StatusNotFound},
 		{"/.env", http.StatusNotFound},
+		{"/api/demo-prices.json", http.StatusNotFound},
+		{"/dist/frontend/main.js", http.StatusNotFound},
+		{"/frontend/main.ts", http.StatusNotFound},
 	} {
 		t.Run(tc.path, func(t *testing.T) {
 			response := httptest.NewRecorder()
