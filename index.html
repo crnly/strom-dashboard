@@ -82,7 +82,7 @@
           <p class="section-lead">Das TypeScript-Frontend spricht über eine dokumentierte HTTP-API mit dem Python-Backend. Der Import ist als späterer Hintergrundprozess geplant. Die einen Daten werden regelmäßig abgeholt, die anderen auf Anfrage ausgeliefert. PostgreSQL verbindet beide Abläufe.</p>
           <figure class="diagram-figure">
             <div class="diagram-toolbar"><span><span class="status-dot"></span> system.d2 → system.svg</span><div><a href="diagrams/system.d2" download>D2-Quelle ↓</a><a href="diagrams/system.svg" target="_blank" rel="noopener">Vollansicht ↗</a></div></div>
-            <div class="diagram-canvas overview-canvas"><img src="diagrams/system.svg" width="1147" height="1260" alt="Geplante Architektur: Browser über Caddy zum Python-Backend und PostgreSQL. Energy-Charts liefert Daten an den zeitgesteuerten Import. Terraform stellt den Linux-Server bereit."></div>
+            <div class="diagram-canvas overview-canvas"><img src="diagrams/system.svg" width="1235" height="1260" alt="Geplante Architektur: Browser über Caddy zum Python-Backend und PostgreSQL. Energy-Charts liefert Daten an den zeitgesteuerten Import. Terraform stellt den Linux-Server bereit."></div>
             <figcaption>Durchgezogene Pfeile zeigen Daten- und Anfragewege. Gestrichelte Pfeile zeigen Bereitstellung und geplante Starts. Das Bild wurde aus der verlinkten D2-Datei erzeugt.</figcaption>
           </figure>
           <div class="responsibilities">
@@ -98,7 +98,7 @@
           <p class="section-lead">Ein Website-Besuch startet keinen Abruf bei der Datenquelle. Der Import läuft unabhängig davon. Die Reihenfolge der Nachrichten lässt sich im Sequenzdiagramm von oben nach unten lesen.</p>
           <figure class="diagram-figure">
             <div class="diagram-toolbar"><span>dataflow.d2 → dataflow.svg</span><div><a href="diagrams/dataflow.d2" download>D2-Quelle ↓</a><a href="diagrams/dataflow.svg" target="_blank" rel="noopener">Vollansicht ↗</a></div></div>
-            <div class="diagram-canvas"><img loading="lazy" src="diagrams/dataflow.svg" width="1464" height="1396" alt="Zeitlicher Ablauf: Zeitplan startet Import, Energy-Charts antwortet mit JSON, das Backend validiert und speichert. Später fragt der Browser das Backend nach den gespeicherten Tagesdaten."></div>
+            <div class="diagram-canvas"><img loading="lazy" src="diagrams/dataflow.svg" width="1737" height="1396" alt="Zeitlicher Ablauf: Zeitplan startet Import, Energy-Charts antwortet mit JSON, das Backend validiert und speichert. Später fragt der Browser das Backend nach den gespeicherten Tagesdaten."></div>
             <figcaption>Oben: der geplante Hintergrundimport. Unten: eine spätere Anfrage eines Besuchers. Beides kann unabhängig voneinander stattfinden.</figcaption>
           </figure>
           <div class="walkthrough">
@@ -115,7 +115,7 @@
           <p class="section-lead">Die API-Antwort wird in unser eigenes Format überführt. Wir speichern Preisintervalle mit klarer Einheit und eindeutiger Identität. Der folgende Vorschlag ist noch kein implementiertes Datenbankschema.</p>
           <figure class="diagram-figure">
             <div class="diagram-toolbar"><span>database.d2 → database.svg</span><div><a href="diagrams/database.d2" download>D2-Quelle ↓</a><a href="diagrams/database.svg" target="_blank" rel="noopener">Vollansicht ↗</a></div></div>
-            <div class="diagram-canvas"><img loading="lazy" src="diagrams/database.svg" width="1521" height="266" alt="Ein geprüfter Preiswert wird in einer Preise-Tabelle gespeichert. Der gemeinsame Primärschlüssel besteht aus Markt und Intervallbeginn. Eine Tagesabfrage liest die sortierten Werte."></div>
+            <div class="diagram-canvas"><img loading="lazy" src="diagrams/database.svg" width="1766" height="266" alt="Ein geprüfter Preiswert wird in einer Preise-Tabelle gespeichert. Der gemeinsame Primärschlüssel besteht aus Markt und Intervallbeginn. Eine Tagesabfrage liest die sortierten Werte."></div>
             <figcaption>Die beiden PK-Markierungen bilden gemeinsam einen zusammengesetzten Primärschlüssel.</figcaption>
           </figure>
           <div class="record-grid">
@@ -137,7 +137,7 @@
             <summary><span>Den vollständigen Deployment-Weg aufklappen</span><span class="detail-label">D2-Diagramm</span></summary>
             <figure class="diagram-figure">
               <div class="diagram-toolbar"><span>deployment.d2 → deployment.svg</span><div><a href="diagrams/deployment.d2" download>D2-Quelle ↓</a><a href="diagrams/deployment.svg" target="_blank" rel="noopener">Vollansicht ↗</a></div></div>
-              <div class="diagram-canvas deployment-canvas"><img loading="lazy" src="diagrams/deployment.svg" width="981" height="1530" alt="Geplanter Veröffentlichungsweg: GitHub zu Tests, D2-Build und Terraform-Plan. Ein Docker-Image wird versioniert in GHCR veröffentlicht und auf dem eingerichteten Server gestartet und geprüft."></div>
+              <div class="diagram-canvas deployment-canvas"><img loading="lazy" src="diagrams/deployment.svg" width="1079" height="1530" alt="Geplanter Veröffentlichungsweg: GitHub zu Tests, D2-Build und Terraform-Plan. Ein Docker-Image wird versioniert in GHCR veröffentlicht und auf dem eingerichteten Server gestartet und geprüft."></div>
               <figcaption>Ein Infrastruktur-Plan, ein erfolgreich gebautes Image und eine funktionierende Veröffentlichung sind unterschiedliche Prüfschritte.</figcaption>
             </figure>
           </details>

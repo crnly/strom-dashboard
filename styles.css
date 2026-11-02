@@ -166,12 +166,12 @@ body:has(#system:target, #system :target) .system-tab { color: var(--accent); ba
 .section-heading h2 { font-size: clamp(22px, 3vw, 28px); font-weight: 550; letter-spacing: -.8px; }
 .section-lead { max-width: 820px; margin: 15px 0 23px; color: var(--muted); font-size: 13px; line-height: 1.9; }
 .diagram-figure { margin: 0; border: 1px solid var(--line); border-radius: 9px; overflow: hidden; background: var(--surface); }
-.diagram-toolbar { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; padding: 15px 20px; border-bottom: 1px solid var(--line); background: #10273e; color: var(--muted); font: 10px/1.5 var(--mono); }
+.diagram-toolbar { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; padding: 15px 20px; border-bottom: 1px solid var(--line); background: #f5f7fa; color: var(--muted); font: 10px/1.5 var(--mono); }
 .diagram-toolbar .status-dot { background: var(--accent); margin-right: 7px; }
 .diagram-toolbar > div { display: flex; gap: 20px; }
 .diagram-toolbar a { color: var(--accent); text-decoration: none; }
 .diagram-toolbar a:hover { text-decoration: underline; }
-.diagram-canvas { padding: 24px; overflow: auto; background-color: var(--surface); background-image: radial-gradient(#29445e .7px, transparent .7px); background-size: 16px 16px; }
+.diagram-canvas { padding: 24px; overflow: auto; background-color: var(--surface); background-image: radial-gradient(#dfe6ed .7px, transparent .7px); background-size: 16px 16px; }
 .diagram-canvas img { display: block; width: 100%; height: auto; margin: 0 auto; }
 .overview-canvas img { max-width: 900px; }
 .diagram-figure figcaption { padding: 14px 20px; border-top: 1px solid var(--line); color: var(--muted); font-size: 11px; line-height: 1.8; }
@@ -239,13 +239,8 @@ code { font-family: var(--mono); font-size: .92em; }
   .documentation-note { padding: 18px; }
 }
 
-/* Helle Außenflächen und dunkle Diagrammtafeln. Gelb bleibt in den SVGs. */
+/* Helle Diagrammtafeln für D2 Theme 101 im Sketch-Modus. Theme-Farben bleiben in den SVGs. */
 .diagram-figure {
-  --surface: #0c1e31;
-  --ink: #e4f4ff;
-  --muted: #a0b6cb;
-  --line: #24415d;
-  --accent: #61dcff;
   box-shadow: 0 10px 35px #142b450b;
 }
 #system .planning-note { background: #e8f1fc; border-color: #cedded; }

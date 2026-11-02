@@ -1,35 +1,28 @@
-vars: {d2-config: {theme-id: 201}}
-style: {fill: "#0C1E31"; font-color: "#E4F4FF"}
+vars: {d2-config: {theme-id: 101; sketch: true; pad: 24}}
 # Geplanter Software- und Infrastrukturweg. Releases sind versioniert.
 direction: down
-classes: {
-  node: {style: {fill: "#10273E"; stroke: "#365A79"; font-color: "#E4F4FF"; border-radius: 8}}
-  emphasis: {style: {fill: "#29391E"; stroke: "#E7FF32"; font-color: "#F3FFC5"; border-radius: 8}}
-}
-repo: "GitHub-Repository\nTypeScript · Python · D2" {class: node}
+repo: "GitHub-Repository\nTypeScript · Python · D2"
 ci: "GitHub Actions · prüfen" {
-  style: {fill: "#0B1A2C"; stroke: "#24415D"; border-radius: 10}
-  tests: "TypeScript-Build & API-Tests\nPython-Backend prüfen" {class: node}
-  docs: "D2 → SVG\nDokumentation erzeugen" {class: node}
-  plan: "terraform plan\nÄnderungen sichtbar machen" {class: node}
+  tests: "TypeScript-Build & API-Tests\nPython-Backend prüfen"
+  docs: "D2 → SVG\nDokumentation erzeugen"
+  plan: "terraform plan\nÄnderungen sichtbar machen"
 }
-image: "Docker-Image\nPython-Backend · feste Version" {class: emphasis}
-registry: "GHCR\nContainer-Registry" {class: node}
-release: "Deployment auslösen\nAusgewählte Version" {class: emphasis}
+image: "Docker-Image\nPython-Backend · feste Version"
+registry: "GHCR\nContainer-Registry"
+release: "Deployment auslösen\nAusgewählte Version"
 server: "Cloud-Server" {
-  style: {fill: "#0B1A2C"; stroke: "#365A79"; border-radius: 10}
-  init: "Terraform + cloud-init\nInfrastruktur & Grundeinrichtung" {class: node}
-  run: "Docker Compose\nImage starten · Daten erhalten" {class: emphasis}
-  health: "Health-Check\nAntwortet die Anwendung?" {class: node}
+  init: "Terraform + cloud-init\nInfrastruktur & Grundeinrichtung"
+  run: "Docker Compose\nImage starten · Daten erhalten"
+  health: "Health-Check\nAntwortet die Anwendung?"
 }
-repo -> ci.tests: Anwendungscode {style: {stroke: "#61DCFF"; font-color: "#B8D8F2"}}
-repo -> ci.docs: Diagrammquellen {style: {stroke: "#61DCFF"; font-color: "#B8D8F2"}}
-repo -> ci.plan: Infrastrukturcode {style: {stroke: "#61DCFF"; font-color: "#B8D8F2"}}
-ci.tests -> image: erfolgreich {style: {stroke: "#61DCFF"; font-color: "#B8D8F2"}}
-ci.docs -> image: fertige SVGs {style: {stroke: "#61DCFF"; font-color: "#B8D8F2"}}
-image -> registry: veröffentlichen {style: {stroke: "#61DCFF"; font-color: "#B8D8F2"}}
-registry -> release: Version auswählen {style: {stroke: "#61DCFF"; font-color: "#B8D8F2"}}
-release -> server.run: Image abrufen {style: {stroke: "#61DCFF"; font-color: "#B8D8F2"}}
-ci.plan -> server.init: geprüften Plan anwenden {style: {stroke: "#61DCFF"; font-color: "#B8D8F2"}}
-server.init -> server.run: Server bereit {style: {stroke: "#61DCFF"; font-color: "#B8D8F2"}}
-server.run -> server.health: Start prüfen {style: {stroke: "#61DCFF"; font-color: "#B8D8F2"}}
+repo -> ci.tests: Anwendungscode
+repo -> ci.docs: Diagrammquellen
+repo -> ci.plan: Infrastrukturcode
+ci.tests -> image: erfolgreich
+ci.docs -> image: fertige SVGs
+image -> registry: veröffentlichen
+registry -> release: Version auswählen
+release -> server.run: Image abrufen
+ci.plan -> server.init: geprüften Plan anwenden
+server.init -> server.run: Server bereit
+server.run -> server.health: Start prüfen

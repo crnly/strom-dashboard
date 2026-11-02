@@ -84,10 +84,10 @@ Kubernetes gehört vorerst nicht zum Umfang. Bei einem späteren Backendwechsel 
 
 ## D2-Diagramme aktualisieren
 
-Die SVGs werden mit D2 0.9.0 erzeugt. D2 wird nur zum Bearbeiten und Rendern benötigt, nicht beim Besuch der Website:
+Die vier SVGs werden mit D2 0.9.0 erzeugt. Jede Quelldatei legt `theme-id: 101` (Orange Creamsicle), `sketch: true` und den Randabstand unter `vars.d2-config` fest; der Renderbefehl übernimmt diese Einstellungen automatisch. D2 wird nur zum Bearbeiten und Rendern benötigt, nicht beim Besuch der Website:
 
 ```sh
-d2 --pad 24 diagrams/system.d2 diagrams/system.svg
+d2 diagrams/system.d2 diagrams/system.svg
 ```
 
 Entsprechend für `dataflow`, `database` und `deployment` wiederholen. Diagramme und Text werden bei Architekturänderungen gemeinsam gepflegt; es gibt noch keinen automatischen D2-Build.

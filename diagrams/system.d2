@@ -1,32 +1,25 @@
-vars: {d2-config: {theme-id: 201}}
-style: {fill: "#0C1E31"; font-color: "#E4F4FF"}
+vars: {d2-config: {theme-id: 101; sketch: true; pad: 24}}
 # Geplanter Zielzustand. Noch keine laufende Infrastruktur.
 direction: down
-classes: {
-  node: {style: {fill: "#10273E"; stroke: "#365A79"; font-color: "#E4F4FF"; border-radius: 8}}
-  app: {style: {fill: "#29391E"; stroke: "#E7FF32"; font-color: "#F3FFC5"; border-radius: 8}}
-  control: {style: {stroke: "#E7FF32"; stroke-dash: 5; font-color: "#DCEB9B"}}
-}
-browser: "Browser\nHTML · CSS · TypeScript" {class: node}
-source: "Energy-Charts\nExterne Datenquelle" {shape: cloud; class: node}
-terraform: "Terraform\nServer · IP · Firewall" {class: node}
+classes: {control: {style: {stroke-dash: 5}}}
+browser: "Browser\nHTML · CSS · TypeScript"
+source: "Energy-Charts\nExterne Datenquelle" {shape: cloud}
+terraform: "Terraform\nServer · IP · Firewall"
 server: "Hetzner Cloud · Ubuntu Linux · geplant" {
-  style: {fill: "#0B1A2C"; stroke: "#365A79"; border-radius: 12}
   containers: "Docker Compose" {
-    style: {fill: "#0C1E31"; stroke: "#24415D"; border-radius: 10}
-    caddy: "Caddy\nHTTPS & Weiterleitung" {class: node}
-    web: "Python-Backend\nWebsite & JSON-API" {class: app}
-    db: "PostgreSQL\nPreise & Datenstand" {shape: cylinder; class: node}
-    import: "Import · geplant\nTemporärer Container" {class: app}
+    caddy: "Caddy\nHTTPS & Weiterleitung"
+    web: "Python-Backend\nWebsite & JSON-API"
+    db: "PostgreSQL\nPreise & Datenstand" {shape: cylinder}
+    import: "Import · geplant\nTemporärer Container"
   }
-  timer: "systemd-Timer\nRegelmäßiger Start" {class: node}
-  disk: "Dauerhafter Speicher\nBleibt bei Containerwechsel" {shape: cylinder; class: node}
+  timer: "systemd-Timer\nRegelmäßiger Start"
+  disk: "Dauerhafter Speicher\nBleibt bei Containerwechsel" {shape: cylinder}
 }
-browser -> server.containers.caddy: HTTPS {style: {stroke: "#61DCFF"; font-color: "#B8D8F2"}}
-server.containers.caddy -> server.containers.web: HTTP intern {style: {stroke: "#61DCFF"; font-color: "#B8D8F2"}}
-server.containers.web -> server.containers.db: SQL lesen {style: {stroke: "#61DCFF"; font-color: "#B8D8F2"}}
+browser -> server.containers.caddy: HTTPS
+server.containers.caddy -> server.containers.web: HTTP intern
+server.containers.web -> server.containers.db: SQL lesen
 server.timer -> server.containers.import: starten {class: control}
-source -> server.containers.import: JSON-Daten {style: {stroke: "#61DCFF"; font-color: "#B8D8F2"}}
-server.containers.import -> server.containers.db: SQL aktualisieren {style: {stroke: "#61DCFF"; font-color: "#B8D8F2"}}
-server.containers.db -> server.disk: Daten speichern {style: {stroke: "#61DCFF"; font-color: "#B8D8F2"}}
+source -> server.containers.import: JSON-Daten
+server.containers.import -> server.containers.db: SQL aktualisieren
+server.containers.db -> server.disk: Daten speichern
 terraform -> server: stellt Ressourcen bereit {class: control}
