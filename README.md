@@ -2,7 +2,7 @@
 
 **Status: In Entwicklung · TypeScript-Frontend und drei austauschbare Demo-Backends laufen lokal.**
 
-Dieses Portfolio- und Lernprojekt wächst Schritt für Schritt: von einer kleinen lokalen Anwendung zu einem reproduzierbaren Cloud-Deployment. Die Anwendungslogik bleibt bewusst klein. Der Schwerpunkt liegt auf verständlichen Schnittstellen, SQL, Docker, Linux, Terraform und dem Entwicklungs- und Deployment-Prozess.
+Dieses Lernprojekt wächst Schritt für Schritt: von einer kleinen lokalen Anwendung zu einem reproduzierbaren Cloud-Deployment. Die Anwendungslogik bleibt bewusst klein. Der Schwerpunkt liegt auf verständlichen Schnittstellen, SQL, Docker, Linux, Terraform und dem Entwicklungs- und Deployment-Prozess.
 
 Das Frontend besteht aus **HTML, CSS und TypeScript**, ohne UI-Framework. Es lädt Beispieldaten über HTTP und zeichnet ein Tagesdiagramm. Der zweite Tab erklärt den geplanten Systemaufbau mit D2-Diagrammen.
 
