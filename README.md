@@ -78,15 +78,13 @@ Anschließend [localhost:4176](http://127.0.0.1:4176) öffnen. Mit Strg+C beende
 
 Die sieben Referenzen geben meiner persönlichen Weiterentwicklung eine Richtung. Ich möchte die dahinterstehenden Prinzipien an echten Projekten selbst anwenden, Erfahrungen sammeln und dadurch die Qualität meiner Arbeit Schritt für Schritt verbessern.
 
-| Approach | Implementation | Evidence |
-| --- | --- | --- |
-| **SOLID** | Getrennte Verantwortlichkeiten für Frontend, HTTP-Server und API-Vertrag. Eine vollständige Bewertung der SOLID-Prinzipien steht aus. | [Frontend](frontend/main.ts), [Backend](backend/server.py), [API-Vertrag](api/README.md) |
-| **Test Pyramid** | HTTP-Integrationstest vorhanden. Separate Unit- und End-to-End-Tests sind noch nicht umgesetzt. | [Integrationstest](tests/contract_test.py), [Testbefehl](package.json) |
-| **CI/CD** | Build, Typprüfung und Test sind lokal ausführbar. Automatisierte CI und Deployment sind geplant. | [npm-Skripte](package.json); noch kein CI/CD-Workflow vorhanden |
-| **OWASP LLM Top 10** | N/A — die Anwendung verwendet keine LLM-Funktionalität. | Aktueller Funktionsumfang: [Frontend](frontend/main.ts), [Backend](backend/server.py) |
-| **NIST CSF 2.0** | Noch zu bewerten. Eine Zuordnung vorhandener Maßnahmen zum Framework steht aus. | Ausgangspunkte: [explizite Dateifreigabe und lokale Bind-Adresse](backend/server.py), [HTTP-Prüfungen](tests/contract_test.py) |
-| **ISO 27001** | Noch zu bewerten. Es gibt keine dokumentierte Zuordnung zu Controls und kein projektspezifisches ISMS. | To be assessed |
-| **C4 Model** | Vereinfachter, an C4 orientierter Überblick über die aktuellen Bausteine; kein vollständiger Satz von C4-Diagrammen. | [Ausführliches D2-Zielbild](diagrams/system.d2)<br>[Vereinfachter Architecture Snapshot (Mermaid)](#architecture-diagram)<br>↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ |
+- **SOLID:** Verantwortlichkeiten klar trennen und Code verständlich erweiterbar halten. Erste Aufteilung: [Frontend](frontend/main.ts) und [Backend](backend/server.py).
+- **Test Pyramid:** Funktionen und Schnittstellen gezielt testen. Bisher vorhanden: ein [HTTP-Integrationstest](tests/contract_test.py).
+- **CI/CD:** Änderungen automatisiert prüfen und reproduzierbar veröffentlichen. Bisher vorhanden: [lokale Build- und Prüfbefehle](package.json).
+- **OWASP LLM Top 10:** Sicherheitsrisiken berücksichtigen, sobald LLM-Funktionen hinzukommen. Aktuell verwendet das Projekt keine LLMs.
+- **NIST CSF 2.0:** Sicherheitsrisiken systematisch betrachten und passende Maßnahmen ableiten. Die Bewertung steht noch aus.
+- **ISO 27001:** Informationssicherheit nachvollziehbar organisieren und dokumentieren. Die Bewertung steht noch aus.
+- **C4 Model:** Aufbau und Zusammenhänge des Systems verständlich darstellen: [Ausführliches D2-Zielbild](diagrams/system.d2) und [Vereinfachter Architecture Snapshot (Mermaid)](#architecture-diagram).<br>↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓
 
 <a name="architecture-diagram"></a>
 
