@@ -23,21 +23,39 @@ Ein kleines Stromdashboard, an dem ich den Aufbau und Betrieb einer Cloud-Anwend
 
 ### Projektstruktur
 
+Versionierte Dateien im Repository:
+
 ```text
 strom-dashboard/
-├── index.html                 # Beide Ansichten
-├── styles.css                 # Layout und Sketch-Design
-├── frontend/main.ts           # Daten laden, prüfen und zeichnen
-├── backend/server.py          # Python-Webserver und Demo-API
-├── assets/fonts/              # Lokale Schrift und zugehörige Lizenz
 ├── api/
-│   ├── README.md              # HTTP-Vertrag
-│   └── demo-prices.json        # 24 erfundene Stundenwerte
-├── tests/contract_test.py      # HTTP-Integrationstest
-├── diagrams/                  # D2-Quellen und gerenderte SVGs
-├── package.json
-├── package-lock.json
-└── tsconfig.json
+│   ├── README.md                      # HTTP-Vertrag
+│   └── demo-prices.json               # Beispieldaten
+├── assets/
+│   └── fonts/
+│       ├── FuzzyBubbles-Regular.ttf   # Lokal ausgelieferte Schrift
+│       └── OFL.txt                    # Schriftlizenz
+├── backend/
+│   └── server.py                      # Python-Webserver und Demo-API
+├── diagrams/
+│   ├── database.d2                    # Datenmodell: Quelle
+│   ├── database.svg                   # Datenmodell: Grafik
+│   ├── dataflow.d2                    # Datenfluss: Quelle
+│   ├── dataflow.svg                   # Datenfluss: Grafik
+│   ├── deployment.d2                  # Deployment: Quelle
+│   ├── deployment.svg                 # Deployment: Grafik
+│   ├── system.d2                      # Systemarchitektur: Quelle
+│   └── system.svg                     # Systemarchitektur: Grafik
+├── frontend/
+│   └── main.ts                        # Daten laden, prüfen und zeichnen
+├── tests/
+│   └── contract_test.py               # HTTP-Integrationstest
+├── .gitignore                         # Lokale Dateien ausschließen
+├── README.md                          # Projektübersicht
+├── index.html                         # Beide Ansichten
+├── styles.css                         # Darstellung und Layout
+├── package.json                       # npm-Skripte und Build-Abhängigkeiten
+├── package-lock.json                  # Festgeschriebene Abhängigkeiten
+└── tsconfig.json                      # TypeScript-Konfiguration
 ```
 
 `dist/` und `node_modules/` werden lokal erzeugt und nicht eingecheckt.
