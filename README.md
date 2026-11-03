@@ -63,14 +63,9 @@ strom-dashboard/
 
 ## Getting Started
 
-### Voraussetzungen
+Voraussetzungen: Python 3.11+ und Node.js 24+ mit npm.
 
-- Python 3.11 oder neuer.
-- Node.js 24 oder neuer mit npm zum Bauen des Frontends.
-
-### Starten
-
-Aus dem Projektordner:
+Im Projektordner ausführen:
 
 ```sh
 npm ci
@@ -78,9 +73,7 @@ npm run build
 npm start
 ```
 
-http://127.0.0.1:4176 öffnen. Mit Strg+C beenden. `python3 backend/server.py` startet direkt denselben Server. Ein anderer Port ist über `PORT=8080 npm start` möglich.
-
-Der Server lauscht nur auf dem eigenen Rechner. Nach Änderungen an TypeScript erneut `npm run build` ausführen und die Browserseite neu laden; nach Python-Änderungen den Server neu starten. Der lokale Lernserver auf Basis von `http.server` wird vor dem Cloud-Deployment durch einen passenden Produktionsbetrieb ergänzt oder ersetzt.
+Anschließend [localhost:4176](http://127.0.0.1:4176) öffnen. Mit Strg+C beenden.
 
 ## Engineering & Quality
 
