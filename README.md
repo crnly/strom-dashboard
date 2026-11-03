@@ -67,7 +67,6 @@ strom-dashboard/
 
 - Python 3.11 oder neuer.
 - Node.js 24 oder neuer mit npm zum Bauen des Frontends.
-- Optional: D2 0.9.0 zum Bearbeiten und Rendern der Diagramme.
 
 ### Starten
 
@@ -82,16 +81,6 @@ npm start
 http://127.0.0.1:4176 öffnen. Mit Strg+C beenden. `python3 backend/server.py` startet direkt denselben Server. Ein anderer Port ist über `PORT=8080 npm start` möglich.
 
 Der Server lauscht nur auf dem eigenen Rechner. Nach Änderungen an TypeScript erneut `npm run build` ausführen und die Browserseite neu laden; nach Python-Änderungen den Server neu starten. Der lokale Lernserver auf Basis von `http.server` wird vor dem Cloud-Deployment durch einen passenden Produktionsbetrieb ergänzt oder ersetzt.
-
-### D2-Diagramme aktualisieren
-
-Theme 101, Sketch-Modus und Randabstand sind in jeder `.d2`-Datei unter `vars.d2-config` gespeichert:
-
-```sh
-d2 diagrams/system.d2 diagrams/system.svg
-```
-
-Entsprechend für `dataflow`, `database` und `deployment` wiederholen. D2 wird beim Besuch der Website nicht benötigt. Diagramme und Texte werden bei Architekturänderungen gemeinsam gepflegt; der D2-Build ist noch nicht automatisiert.
 
 ## Engineering & Quality
 
