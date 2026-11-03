@@ -25,6 +25,7 @@ Antwort: HTTP 200, `Content-Type: application/json`, `{"status":"ok"}`. Prüft n
 ## HTTP-Verhalten
 
 - `GET /`, `/styles.css`, `/assets/main.js` und die vier Diagramme als SVG/D2 liefern die Frontenddateien aus.
+- `/assets/fonts/FuzzyBubbles-Regular.ttf` liefert die lokale Überschriftenschrift aus; die zugehörige Lizenz liegt unter `/assets/fonts/OFL.txt`.
 - `HEAD` liefert für diese Routen die gleichen Statuscodes und Metadaten ohne Antwortkörper.
 - Unbekannte Pfade antworten mit 404. Quellcode, API-Fixture und Verzeichnislisten sind nicht direkt öffentlich erreichbar.
 - `POST`, `PUT`, `PATCH`, `DELETE` und `OPTIONS` auf vorhandene Routen antworten mit 405. Es gibt keine Schreiboperationen.

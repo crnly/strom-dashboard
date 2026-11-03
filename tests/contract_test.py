@@ -71,6 +71,8 @@ class BackendContract(unittest.TestCase):
             "/": ("index.html", "text/html"),
             "/styles.css": ("styles.css", "text/css"),
             "/assets/main.js": ("dist/frontend/main.js", "text/javascript"),
+            "/assets/fonts/FuzzyBubbles-Regular.ttf": ("assets/fonts/FuzzyBubbles-Regular.ttf", "font/ttf"),
+            "/assets/fonts/OFL.txt": ("assets/fonts/OFL.txt", "text/plain"),
         }
         for name in ("system", "dataflow", "database", "deployment"):
             assets[f"/diagrams/{name}.svg"] = (f"diagrams/{name}.svg", "image/svg+xml")

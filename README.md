@@ -6,6 +6,8 @@ Dieses Lernprojekt wächst Schritt für Schritt: von einer kleinen lokalen Anwen
 
 Das Frontend besteht aus **HTML, CSS und TypeScript**, ohne UI-Framework. Es lädt Beispieldaten über HTTP vom **Python-Backend** und zeichnet ein Tagesdiagramm. Der zweite Tab erklärt den geplanten Systemaufbau mit D2-Diagrammen.
 
+Das UI greift den Sketch-Stil von D2 Theme 101 auf: Creme, Orange, Mintgrün und leicht unregelmäßige Konturen. Überschriften verwenden die lokal ausgelieferte Schrift [Fuzzy Bubbles](https://github.com/google/fonts/tree/main/ofl/fuzzybubbles); Fließtext und JSON bleiben in gut lesbaren Systemschriften. Die unveränderte Schriftdatei und ihre SIL-OFL-Lizenz liegen unter `assets/fonts/`. Beim Seitenaufruf werden keine externen Schriftdienste benötigt.
+
 Wir entwickeln und betreiben vorerst nur dieses eine Backend. Der dokumentierte [API-Vertrag](api/README.md) ermöglicht einen späteren Wechsel, etwa zu Go oder TypeScript. Eine weitere Implementierung ergänzen wir erst bei konkretem Lernbedarf. Frühere Versuche mit anderen Backends bleiben in der Git-Historie erhalten.
 
 Die Architekturdiagramme zeigen das Zielbild, einschließlich noch nicht implementierter Komponenten. Es gibt noch keine öffentliche Live-Anwendung, keine echten Stromdaten und keine Datenbank.
@@ -40,6 +42,7 @@ strom-dashboard/
 ├── styles.css                 # Layout und Farben
 ├── frontend/main.ts           # Daten laden und Diagramm zeichnen
 ├── backend/server.py          # Python-Webserver und Demo-API
+├── assets/fonts/              # Lokale Schrift und zugehörige Lizenz
 ├── api/
 │   ├── README.md              # HTTP-Vertrag
 │   └── demo-prices.json        # 24 erfundene Stundenwerte

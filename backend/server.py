@@ -14,6 +14,8 @@ def public_file(path):
         "/": ("index.html", "text/html; charset=utf-8"),
         "/styles.css": ("styles.css", "text/css; charset=utf-8"),
         "/assets/main.js": ("dist/frontend/main.js", "text/javascript; charset=utf-8"),
+        "/assets/fonts/FuzzyBubbles-Regular.ttf": ("assets/fonts/FuzzyBubbles-Regular.ttf", "font/ttf"),
+        "/assets/fonts/OFL.txt": ("assets/fonts/OFL.txt", "text/plain; charset=utf-8"),
         "/api/prices": ("api/demo-prices.json", "application/json"),
     }
     for name in ("system", "dataflow", "database", "deployment"):
