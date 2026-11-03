@@ -4,17 +4,11 @@
 
 Ein kleines Stromdashboard, an dem ich den Aufbau und Betrieb einer Cloud-Anwendung Schritt für Schritt lerne. Ich habe Strom als Thema gewählt, weil mich Energie interessiert und mit [Energy-Charts](https://api.energy-charts.info/) eine öffentlich zugängliche Datenquelle zur Verfügung steht.
 
-**Status:** Lokaler Prototyp mit Beispieldaten. Echte Stromdaten, Datenbank und Cloud-Deployment sind geplant.
-
 ## Features
 
 - Tagesdiagramm mit 24 erfundenen Strompreisen.
 - Aufklappbare JSON-Ansicht der geladenen Daten.
 - Systemtour mit D2-Diagrammen zu Architektur, Datenfluss und Deployment.
-
-**Als Nächstes:** Auswahl zwischen Strom und Erdöl (Brent) mit echten Preisdaten.
-
-**Später:** PostgreSQL, Docker Compose und Cloud-Deployment mit Terraform und GitHub Actions.
 
 ## Tech Stack
 

@@ -1,4 +1,8 @@
 .DS_Store
+
+# Persönliche Projektplanung, bleibt lokal
+/PROJEKTPLAN.local.md
+
 /strom-dashboard
 /bin/
 /coverage.out
