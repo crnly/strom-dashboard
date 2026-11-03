@@ -12,7 +12,9 @@ Ein kleines Stromdashboard, an dem ich den Aufbau und Betrieb einer Cloud-Anwend
 - Aufklappbare JSON-Ansicht der geladenen Daten.
 - Systemtour mit D2-Diagrammen zu Architektur, Datenfluss und Deployment.
 
-**Geplant:** Echte Stromdaten, PostgreSQL, Docker Compose und Cloud-Deployment mit Terraform und GitHub Actions.
+**Als Nächstes:** Auswahl zwischen Strom und Erdöl (Brent) mit echten Preisdaten.
+
+**Später:** PostgreSQL, Docker Compose und Cloud-Deployment mit Terraform und GitHub Actions.
 
 ## Tech Stack
 
