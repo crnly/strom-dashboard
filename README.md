@@ -1,22 +1,77 @@
 # strom — Stromdaten als Cloud-Lernprojekt
 
-**Status: In Entwicklung · TypeScript-Frontend und Python-Backend laufen lokal.**
+## Overview
 
-Dieses Lernprojekt wächst Schritt für Schritt: von einer kleinen lokalen Anwendung zu einem reproduzierbaren Cloud-Deployment. Die Anwendungslogik bleibt bewusst klein. Der Schwerpunkt liegt auf verständlichen Schnittstellen, SQL, Docker, Linux, Terraform und dem Entwicklungs- und Deployment-Prozess.
+**Status: In Entwicklung · läuft lokal mit Beispieldaten.**
 
-Das Frontend besteht aus **HTML, CSS und TypeScript**, ohne UI-Framework. Es lädt Beispieldaten über HTTP vom **Python-Backend** und zeichnet ein Tagesdiagramm. Der zweite Tab erklärt den geplanten Systemaufbau mit D2-Diagrammen.
+Ein kleines Stromdashboard mit TypeScript-Frontend und Python-Backend. Das Lernprojekt wächst schrittweise zu einem reproduzierbaren Cloud-Deployment. Die Anwendungslogik bleibt bewusst klein; der Schwerpunkt liegt auf verständlichen Schnittstellen, SQL, Docker, Linux und Terraform.
 
-Das UI greift den Sketch-Stil von D2 Theme 101 auf: Creme, Orange, Mintgrün und leicht unregelmäßige Konturen. Überschriften verwenden die lokal ausgelieferte Schrift [Fuzzy Bubbles](https://github.com/google/fonts/tree/main/ofl/fuzzybubbles); Fließtext und JSON bleiben in gut lesbaren Systemschriften. Die unveränderte Schriftdatei und ihre SIL-OFL-Lizenz liegen unter `assets/fonts/`. Beim Seitenaufruf werden keine externen Schriftdienste benötigt.
+Aktuell gibt es keine echten Stromdaten, Datenbank oder öffentliche Live-Anwendung. Die ausführlichen D2-Diagramme im Tab „So funktioniert’s“ zeigen den geplanten Zielzustand. Der [Architecture Snapshot](#architecture-snapshot) unten zeigt dagegen den bereits implementierten Aufbau.
 
-Wir entwickeln und betreiben vorerst nur dieses eine Backend. Der dokumentierte [API-Vertrag](api/README.md) ermöglicht einen späteren Wechsel, etwa zu Go oder TypeScript. Eine weitere Implementierung ergänzen wir erst bei konkretem Lernbedarf. Frühere Versuche mit anderen Backends bleiben in der Git-Historie erhalten.
+## Features
 
-Die Architekturdiagramme zeigen das Zielbild, einschließlich noch nicht implementierter Komponenten. Es gibt noch keine öffentliche Live-Anwendung, keine echten Stromdaten und keine Datenbank.
+- Tagesdiagramm mit 24 ausdrücklich als erfunden gekennzeichneten Stundenpreisen.
+- Aufklappbare JSON-Ansicht der geladenen Daten.
+- Validierung der API-Antwort im Frontend und sichtbare Meldungen bei Ladefehlern.
+- Zweiter Tab mit Erklärungen zu Architektur, Datenfluss, Datenmodell, Deployment und Betrieb.
+- Vier D2-Diagramme mit verlinkten Quelldateien und SVG-Vollansichten.
+- Lokaler Health-Endpunkt unter `/healthz`; er prüft ausschließlich den Webprozess.
 
-## Lokal starten
+### Geplant
 
-Benötigt Python 3.11+ sowie Node.js 24+ mit npm zum Bauen des TypeScript-Frontends. Node.js wird nicht als Backend verwendet.
+- [ ] Echte Stromdaten aus einer öffentlichen API abrufen.
+- [ ] Preisintervalle in PostgreSQL speichern und anzeigen.
+- [ ] Anwendung und Datenbank mit Docker Compose betreiben.
+- [ ] Cloud-Infrastruktur mit Terraform bereitstellen und auf Linux deployen.
+- [ ] Tests und Deployment mit GitHub Actions automatisieren; Betrieb und Wiederherstellung dokumentieren.
 
-Nach dem Klonen aus dem Projektordner starten:
+Kubernetes gehört vorerst nicht zum Umfang. Wir pflegen ein Python-Backend. Ein späterer Sprachwechsel kann auf dem dokumentierten [API-Vertrag](api/README.md) aufbauen, erfordert aber eine neue Backend-Implementierung mit passender Fachlogik und gegebenenfalls kompatiblem Datenbankschema.
+
+## Tech Stack
+
+| Bereich | Technologie | Verwendung |
+| --- | --- | --- |
+| Frontend | HTML, CSS, TypeScript | Oberfläche, API-Abfrage und Diagramm; ohne UI-Framework |
+| Backend | Python 3.11+, Standardbibliothek | Lokaler HTTP-Server, Demo-API und Dateiauslieferung |
+| Daten | JSON | Fest hinterlegte Beispieldaten; noch keine Datenbank |
+| Build | Node.js 24+, npm, TypeScript-Compiler | Übersetzt das Frontend; Node.js ist kein Backend |
+| Tests | Python `unittest` und `http.client` | HTTP-Integrationstest gegen einen gestarteten Python-Server |
+| Dokumentation | D2 0.9.0, Mermaid | Ausführliche Zielbilder und kompakter Architekturüberblick |
+
+Das UI übernimmt den Sketch-Stil von D2 Theme 101 (Orange Creamsicle). Die Überschriftenschrift Fuzzy Bubbles wird lokal ausgeliefert; Fließtext und JSON verwenden Systemschriften.
+
+### Projektstruktur
+
+```text
+strom-dashboard/
+├── index.html                 # Beide Ansichten
+├── styles.css                 # Layout und Sketch-Design
+├── frontend/main.ts           # Daten laden, prüfen und zeichnen
+├── backend/server.py          # Python-Webserver und Demo-API
+├── assets/fonts/              # Lokale Schrift und zugehörige Lizenz
+├── api/
+│   ├── README.md              # HTTP-Vertrag
+│   └── demo-prices.json        # 24 erfundene Stundenwerte
+├── tests/contract_test.py      # HTTP-Integrationstest
+├── diagrams/                  # D2-Quellen und gerenderte SVGs
+├── package.json
+├── package-lock.json
+└── tsconfig.json
+```
+
+`dist/` und `node_modules/` werden lokal erzeugt und nicht eingecheckt.
+
+## Getting Started
+
+### Voraussetzungen
+
+- Python 3.11 oder neuer.
+- Node.js 24 oder neuer mit npm zum Bauen des Frontends.
+- Optional: D2 0.9.0 zum Bearbeiten und Rendern der Diagramme.
+
+### Starten
+
+Aus dem Projektordner:
 
 ```sh
 npm ci
@@ -24,73 +79,63 @@ npm run build
 npm start
 ```
 
-http://127.0.0.1:4176 öffnen. Mit Strg+C beenden. Alternativ startet `python3 backend/server.py` direkt denselben Server.
+http://127.0.0.1:4176 öffnen. Mit Strg+C beenden. `python3 backend/server.py` startet direkt denselben Server. Ein anderer Port ist über `PORT=8080 npm start` möglich.
 
-Ein anderer Port ist möglich:
+Der Server lauscht nur auf dem eigenen Rechner. Nach Änderungen an TypeScript erneut `npm run build` ausführen und die Browserseite neu laden; nach Python-Änderungen den Server neu starten. Der lokale Lernserver auf Basis von `http.server` wird vor dem Cloud-Deployment durch einen passenden Produktionsbetrieb ergänzt oder ersetzt.
+
+### D2-Diagramme aktualisieren
+
+Theme 101, Sketch-Modus und Randabstand sind in jeder `.d2`-Datei unter `vars.d2-config` gespeichert:
 
 ```sh
-PORT=8080 npm start
+d2 diagrams/system.d2 diagrams/system.svg
 ```
 
-Der Server lauscht nur auf dem eigenen Rechner. Nach Änderungen an TypeScript erneut `npm run build` ausführen und die Browserseite neu laden. Nach Änderungen am Python-Code den Server neu starten.
+Entsprechend für `dataflow`, `database` und `deployment` wiederholen. D2 wird beim Besuch der Website nicht benötigt. Diagramme und Texte werden bei Architekturänderungen gemeinsam gepflegt; der D2-Build ist noch nicht automatisiert.
 
-## Aufbau
+## Engineering & Quality
 
-```text
-strom-dashboard/
-├── index.html                 # Beide Ansichten
-├── styles.css                 # Layout und Farben
-├── frontend/main.ts           # Daten laden und Diagramm zeichnen
-├── backend/server.py          # Python-Webserver und Demo-API
-├── assets/fonts/              # Lokale Schrift und zugehörige Lizenz
-├── api/
-│   ├── README.md              # HTTP-Vertrag
-│   └── demo-prices.json        # 24 erfundene Stundenwerte
-├── tests/contract_test.py      # HTTP-Test gegen den Python-Server
-├── diagrams/                  # D2-Quellen und SVGs
-├── package.json
-├── package-lock.json
-└── tsconfig.json
-```
+Die sieben Referenzen dienen als Orientierung. Die Tabelle nennt vorhandene Nachweise und kennzeichnet offene Implementierungen und Bewertungen.
 
-`dist/` und `node_modules/` werden lokal erzeugt und nicht eingecheckt. Die Struktur wächst mit dem tatsächlich benötigten Code.
+| Approach | Implementation | Evidence |
+| --- | --- | --- |
+| **SOLID** | Getrennte Verantwortlichkeiten für Frontend, HTTP-Server und API-Vertrag. Eine vollständige Bewertung der SOLID-Prinzipien steht aus. | [Frontend](frontend/main.ts), [Backend](backend/server.py), [API-Vertrag](api/README.md) |
+| **C4 Model** | Vereinfachter, an C4 orientierter Überblick über die aktuellen Bausteine; kein vollständiger Satz von C4-Diagrammen. | [Architecture Snapshot](#architecture-snapshot); ausführliches [D2-Zielbild](diagrams/system.d2) |
+| **Test Pyramid** | HTTP-Integrationstest vorhanden. Separate Unit- und End-to-End-Tests sind noch nicht umgesetzt. | [Integrationstest](tests/contract_test.py), [Testbefehl](package.json) |
+| **CI/CD** | Build, Typprüfung und Test sind lokal ausführbar. Automatisierte CI und Deployment sind geplant. | [npm-Skripte](package.json); noch kein CI/CD-Workflow vorhanden |
+| **OWASP LLM Top 10** | N/A — die Anwendung verwendet keine LLM-Funktionalität. | Aktueller Funktionsumfang: [Frontend](frontend/main.ts), [Backend](backend/server.py) |
+| **NIST CSF 2.0** | Noch zu bewerten. Eine Zuordnung vorhandener Maßnahmen zum Framework steht aus. | Ausgangspunkte: [explizite Dateifreigabe und lokale Bind-Adresse](backend/server.py), [HTTP-Prüfungen](tests/contract_test.py) |
+| **ISO 27001** | Noch zu bewerten. Es gibt keine dokumentierte Zuordnung zu Controls und kein projektspezifisches ISMS. | To be assessed |
 
-- `GET /api/prices` liefert die Beispieldaten. Das Frontend prüft die Antwort zur Laufzeit und zeigt Ladefehler an.
-- `/healthz` liefert `{"status":"ok"}` und prüft nur den Webprozess.
-- Der Server gibt ausschließlich freigegebene Dateien aus, nicht den ganzen Projektordner.
-- Der API-Vertrag legt URLs, Felder, Einheiten und HTTP-Verhalten fest. Ein späterer Sprachwechsel erfordert eine neue Implementierung der Backendlogik; er ist keine automatische Übersetzung.
-
-Python verwendet zunächst die Standardbibliothek. Der lokale Lernserver auf Basis von `http.server` ist kein Produktionsserver; den passenden Produktionsbetrieb richten wir vor dem Cloud-Deployment ein.
-
-`"private": true` in `package.json` verhindert eine versehentliche Veröffentlichung als npm-Paket. Das GitHub-Repository bleibt öffentlich.
-
-## Prüfen
+### Lokale Qualitätsprüfungen
 
 ```sh
 npm run check
 npm test
 ```
 
-`npm test` baut TypeScript und startet einen Python-Testserver auf einem freien lokalen Port. Der Test prüft JSON-Daten, Frontenddateien, Health-Endpunkt, HEAD-Anfragen, nicht öffentliche Pfade und abgewiesene Schreibanfragen. Er lädt keine externen Stromdaten und beendet den Testserver wieder.
+`npm run check` prüft TypeScript ohne Ausgabe von JavaScript. `npm test` baut das Frontend und startet einen Python-Testserver auf einem freien lokalen Port. Der Integrationstest prüft JSON-Daten, Frontenddateien, Schriftdatei, Health-Endpunkt, HEAD-Anfragen, nicht öffentliche Pfade und abgewiesene Schreibanfragen. Er lädt keine externen Stromdaten und beendet den Testserver wieder.
 
-## Lernpfad
+### Architecture Snapshot
 
-- [x] Kleines Dashboard und den Tab „So funktioniert’s“ mit D2-Diagrammen gestalten.
-- [x] TypeScript-Frontend an ein Python-Backend mit dokumentierter HTTP-API anbinden.
-- [ ] Echte Stromdaten aus einer öffentlichen API abrufen und Fehlerfälle verstehen.
-- [ ] Daten in PostgreSQL speichern und im Dashboard anzeigen.
-- [ ] Anwendung und Datenbank lokal mit Docker Compose betreiben.
-- [ ] Cloud-Infrastruktur mit Terraform aufsetzen und die Anwendung auf Linux deployen.
-- [ ] Tests und Deployment mit GitHub Actions automatisieren; Betrieb und Wiederherstellung dokumentieren.
+Aktueller lokaler Stand: Das Python-Backend liefert die Frontenddateien aus und stellt die Demo-API bereit. Es liest eine JSON-Datei; eine externe Datenquelle wird noch nicht abgefragt.
 
-Kubernetes gehört vorerst nicht zum Umfang. Bei einem späteren Backendwechsel müssen neben der HTTP-Schnittstelle auch Datenbankschema und Fachlogik zusammenpassen.
+```mermaid
+flowchart LR
+    User["Nutzer"]
 
-## D2-Diagramme aktualisieren
+    subgraph App["Stromdashboard · lokal"]
+        Frontend["Browser: HTML, CSS, TypeScript"]
+        Backend["Python: HTTP-Server und Demo-API"]
+        Data["JSON-Beispieldaten"]
+    end
 
-Die vier SVGs werden mit D2 0.9.0 erzeugt. Jede Quelldatei legt `theme-id: 101` (Orange Creamsicle), `sketch: true` und den Randabstand unter `vars.d2-config` fest; der Renderbefehl übernimmt diese Einstellungen automatisch. D2 wird nur zum Bearbeiten und Rendern benötigt, nicht beim Besuch der Website:
-
-```sh
-d2 diagrams/system.d2 diagrams/system.svg
+    User -->|Bedient| Frontend
+    Frontend -->|GET /api/prices| Backend
+    Backend -->|Liest| Data
+    Backend -->|Frontenddateien und JSON| Frontend
 ```
 
-Entsprechend für `dataflow`, `database` und `deployment` wiederholen. Diagramme und Text werden bei Architekturänderungen gemeinsam gepflegt; es gibt noch keinen automatischen D2-Build.
+## License
+
+Für den Projektcode wurde noch keine Lizenz festgelegt. Die unveränderte Schrift [Fuzzy Bubbles](https://github.com/google/fonts/tree/main/ofl/fuzzybubbles) wird unter der [SIL Open Font License 1.1](assets/fonts/OFL.txt) mitgeliefert.
