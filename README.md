@@ -8,22 +8,11 @@ Ein kleines Stromdashboard, an dem ich den Aufbau und Betrieb einer Cloud-Anwend
 
 ## Features
 
-- Tagesdiagramm mit 24 ausdrücklich als erfunden gekennzeichneten Stundenpreisen.
+- Tagesdiagramm mit 24 erfundenen Strompreisen.
 - Aufklappbare JSON-Ansicht der geladenen Daten.
-- Validierung der API-Antwort im Frontend und sichtbare Meldungen bei Ladefehlern.
-- Zweiter Tab mit Erklärungen zu Architektur, Datenfluss, Datenmodell, Deployment und Betrieb.
-- Vier D2-Diagramme mit verlinkten Quelldateien und SVG-Vollansichten.
-- Lokaler Health-Endpunkt unter `/healthz`; er prüft ausschließlich den Webprozess.
+- Systemtour mit D2-Diagrammen zu Architektur, Datenfluss und Deployment.
 
-### Geplant
-
-- [ ] Echte Stromdaten aus einer öffentlichen API abrufen.
-- [ ] Preisintervalle in PostgreSQL speichern und anzeigen.
-- [ ] Anwendung und Datenbank mit Docker Compose betreiben.
-- [ ] Cloud-Infrastruktur mit Terraform bereitstellen und auf Linux deployen.
-- [ ] Tests und Deployment mit GitHub Actions automatisieren; Betrieb und Wiederherstellung dokumentieren.
-
-Kubernetes gehört vorerst nicht zum Umfang. Wir pflegen ein Python-Backend. Ein späterer Sprachwechsel kann auf dem dokumentierten [API-Vertrag](api/README.md) aufbauen, erfordert aber eine neue Backend-Implementierung mit passender Fachlogik und gegebenenfalls kompatiblem Datenbankschema.
+**Geplant:** Echte Stromdaten, PostgreSQL, Docker Compose und Cloud-Deployment mit Terraform und GitHub Actions.
 
 ## Tech Stack
 
