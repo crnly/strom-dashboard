@@ -75,6 +75,8 @@ npm start
 
 Anschließend [localhost:4176](http://127.0.0.1:4176) öffnen. Mit Strg+C beenden.
 
+**Prüfen:** `npm run check` für die TypeScript-Typprüfung, `npm test` für Build und HTTP-Tests.
+
 ## Engineering & Quality
 
 Die sieben Referenzen dienen als Orientierung. Die Tabelle nennt vorhandene Nachweise und kennzeichnet offene Implementierungen und Bewertungen.
@@ -88,15 +90,6 @@ Die sieben Referenzen dienen als Orientierung. Die Tabelle nennt vorhandene Nach
 | **OWASP LLM Top 10** | N/A — die Anwendung verwendet keine LLM-Funktionalität. | Aktueller Funktionsumfang: [Frontend](frontend/main.ts), [Backend](backend/server.py) |
 | **NIST CSF 2.0** | Noch zu bewerten. Eine Zuordnung vorhandener Maßnahmen zum Framework steht aus. | Ausgangspunkte: [explizite Dateifreigabe und lokale Bind-Adresse](backend/server.py), [HTTP-Prüfungen](tests/contract_test.py) |
 | **ISO 27001** | Noch zu bewerten. Es gibt keine dokumentierte Zuordnung zu Controls und kein projektspezifisches ISMS. | To be assessed |
-
-### Lokale Qualitätsprüfungen
-
-```sh
-npm run check
-npm test
-```
-
-`npm run check` prüft TypeScript ohne Ausgabe von JavaScript. `npm test` baut das Frontend und startet einen Python-Testserver auf einem freien lokalen Port. Der Integrationstest prüft JSON-Daten, Frontenddateien, Schriftdatei, Health-Endpunkt, HEAD-Anfragen, nicht öffentliche Pfade und abgewiesene Schreibanfragen. Er lädt keine externen Stromdaten und beendet den Testserver wieder.
 
 ### Architecture Snapshot
 
