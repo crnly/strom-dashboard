@@ -2,7 +2,7 @@
 
 ## Overview
 
-Ein kleines Stromdashboard, an dem ich den Aufbau und Betrieb einer Cloud-Anwendung Schritt für Schritt lerne.
+Ein kleines Stromdashboard, an dem ich den Aufbau und Betrieb einer Cloud-Anwendung Schritt für Schritt lerne. Ich habe Strom als Thema gewählt, weil mich Energie interessiert und mit [Energy-Charts](https://api.energy-charts.info/) eine öffentlich zugängliche Datenquelle zur Verfügung steht.
 
 **Status:** Lokaler Prototyp mit Beispieldaten. Echte Stromdaten, Datenbank und Cloud-Deployment sind geplant.
 
