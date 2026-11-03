@@ -6,7 +6,7 @@
 
 Ein kleines Stromdashboard mit TypeScript-Frontend und Python-Backend. Das Lernprojekt wächst schrittweise zu einem reproduzierbaren Cloud-Deployment. Die Anwendungslogik bleibt bewusst klein; der Schwerpunkt liegt auf verständlichen Schnittstellen, SQL, Docker, Linux und Terraform.
 
-Aktuell gibt es keine echten Stromdaten, Datenbank oder öffentliche Live-Anwendung. Die ausführlichen D2-Diagramme im Tab „So funktioniert’s“ zeigen den geplanten Zielzustand. Der [Architecture Snapshot](#architecture-snapshot) unten zeigt dagegen den bereits implementierten Aufbau.
+Aktuell gibt es keine echten Stromdaten, Datenbank oder öffentliche Live-Anwendung. Die ausführlichen D2-Diagramme im Tab „So funktioniert’s“ zeigen den geplanten Zielzustand. Der [Architecture Snapshot](#architecture-diagram) unten zeigt dagegen den bereits implementierten Aufbau.
 
 ## Features
 
@@ -84,16 +84,14 @@ Die sieben Referenzen dienen als Orientierung. Die Tabelle nennt vorhandene Nach
 | Approach | Implementation | Evidence |
 | --- | --- | --- |
 | **SOLID** | Getrennte Verantwortlichkeiten für Frontend, HTTP-Server und API-Vertrag. Eine vollständige Bewertung der SOLID-Prinzipien steht aus. | [Frontend](frontend/main.ts), [Backend](backend/server.py), [API-Vertrag](api/README.md) |
-| **C4 Model** | Vereinfachter, an C4 orientierter Überblick über die aktuellen Bausteine; kein vollständiger Satz von C4-Diagrammen. | [Architecture Snapshot](#architecture-snapshot); ausführliches [D2-Zielbild](diagrams/system.d2) |
 | **Test Pyramid** | HTTP-Integrationstest vorhanden. Separate Unit- und End-to-End-Tests sind noch nicht umgesetzt. | [Integrationstest](tests/contract_test.py), [Testbefehl](package.json) |
 | **CI/CD** | Build, Typprüfung und Test sind lokal ausführbar. Automatisierte CI und Deployment sind geplant. | [npm-Skripte](package.json); noch kein CI/CD-Workflow vorhanden |
 | **OWASP LLM Top 10** | N/A — die Anwendung verwendet keine LLM-Funktionalität. | Aktueller Funktionsumfang: [Frontend](frontend/main.ts), [Backend](backend/server.py) |
 | **NIST CSF 2.0** | Noch zu bewerten. Eine Zuordnung vorhandener Maßnahmen zum Framework steht aus. | Ausgangspunkte: [explizite Dateifreigabe und lokale Bind-Adresse](backend/server.py), [HTTP-Prüfungen](tests/contract_test.py) |
 | **ISO 27001** | Noch zu bewerten. Es gibt keine dokumentierte Zuordnung zu Controls und kein projektspezifisches ISMS. | To be assessed |
+| **C4 Model** | Vereinfachter, an C4 orientierter Überblick über die aktuellen Bausteine; kein vollständiger Satz von C4-Diagrammen. | [Architecture Snapshot](#architecture-diagram); ausführliches [D2-Zielbild](diagrams/system.d2)<br>↓ ↓ ↓ |
 
-### Architecture Snapshot
-
-Aktueller lokaler Stand: Das Python-Backend liefert die Frontenddateien aus und stellt die Demo-API bereit. Es liest eine JSON-Datei; eine externe Datenquelle wird noch nicht abgefragt.
+<a name="architecture-diagram"></a>
 
 ```mermaid
 flowchart LR
@@ -110,6 +108,10 @@ flowchart LR
     Backend -->|Liest| Data
     Backend -->|Frontenddateien und JSON| Frontend
 ```
+
+### Architecture Snapshot
+
+Aktueller lokaler Stand: Das Python-Backend liefert die Frontenddateien aus und stellt die Demo-API bereit. Es liest eine JSON-Datei; eine externe Datenquelle wird noch nicht abgefragt.
 
 ## License
 
