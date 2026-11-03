@@ -104,10 +104,6 @@ flowchart LR
     Backend -->|Frontenddateien und JSON| Frontend
 ```
 
-### Vereinfachter Architecture Snapshot (Mermaid)
-
-Aktueller lokaler Stand: Das Python-Backend liefert die Frontenddateien aus und stellt die Demo-API bereit. Es liest eine JSON-Datei; eine externe Datenquelle wird noch nicht abgefragt.
-
 ## License
 
 Für den Projektcode wurde noch keine Lizenz festgelegt. Die unveränderte Schrift [Fuzzy Bubbles](https://github.com/google/fonts/tree/main/ofl/fuzzybubbles) wird unter der [SIL Open Font License 1.1](assets/fonts/OFL.txt) mitgeliefert.
