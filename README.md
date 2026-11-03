@@ -58,8 +58,6 @@ strom-dashboard/
 └── tsconfig.json                      # TypeScript-Konfiguration
 ```
 
-`dist/` und `node_modules/` werden lokal erzeugt und nicht eingecheckt.
-
 ## Getting Started
 
 Voraussetzungen: Python 3.11+ und Node.js 24+ mit npm.
