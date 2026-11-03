@@ -2,11 +2,9 @@
 
 ## Overview
 
-**Status: In Entwicklung · läuft lokal mit Beispieldaten.**
+Ein kleines Stromdashboard, an dem ich den Aufbau und Betrieb einer Cloud-Anwendung Schritt für Schritt lerne.
 
-Ein kleines Stromdashboard mit TypeScript-Frontend und Python-Backend. Das Lernprojekt wächst schrittweise zu einem reproduzierbaren Cloud-Deployment. Die Anwendungslogik bleibt bewusst klein; der Schwerpunkt liegt auf verständlichen Schnittstellen, SQL, Docker, Linux und Terraform.
-
-Aktuell gibt es keine echten Stromdaten, Datenbank oder öffentliche Live-Anwendung. Die ausführlichen D2-Diagramme im Tab „So funktioniert’s“ zeigen den geplanten Zielzustand. Der [Architecture Snapshot](#architecture-diagram) unten zeigt dagegen den bereits implementierten Aufbau.
+**Status:** Lokaler Prototyp mit Beispieldaten. Echte Stromdaten, Datenbank und Cloud-Deployment sind geplant.
 
 ## Features
 
