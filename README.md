@@ -79,7 +79,7 @@ Anschließend [localhost:4176](http://127.0.0.1:4176) öffnen. Mit Strg+C beende
 
 ## Engineering & Quality
 
-Die sieben Referenzen dienen als Orientierung. Die Tabelle nennt vorhandene Nachweise und kennzeichnet offene Implementierungen und Bewertungen.
+Die sieben Referenzen geben meiner persönlichen Weiterentwicklung eine Richtung. Ich möchte die dahinterstehenden Prinzipien an echten Projekten selbst anwenden, Erfahrungen sammeln und dadurch die Qualität meiner Arbeit Schritt für Schritt verbessern.
 
 | Approach | Implementation | Evidence |
 | --- | --- | --- |
