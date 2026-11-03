@@ -21,8 +21,6 @@ Ein kleines Stromdashboard, an dem ich den Aufbau und Betrieb einer Cloud-Anwend
 | Tests | Python `unittest` und `http.client` | HTTP-Integrationstest gegen einen gestarteten Python-Server |
 | Dokumentation | D2 0.9.0, Mermaid | Ausführliche Zielbilder und kompakter Architekturüberblick |
 
-Das UI übernimmt den Sketch-Stil von D2 Theme 101 (Orange Creamsicle). Die Überschriftenschrift Fuzzy Bubbles wird lokal ausgeliefert; Fließtext und JSON verwenden Systemschriften.
-
 ### Projektstruktur
 
 ```text
