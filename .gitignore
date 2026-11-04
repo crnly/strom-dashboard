@@ -3,35 +3,7 @@
 # Persönliche Projektplanung, bleibt lokal
 /PROJEKTPLAN.local.md
 
-/strom-dashboard
-/bin/
-/coverage.out
-*.test
-
-# Lokale Konfiguration und Zugangsdaten
+# Lokale Zugangsdaten
 .env
 .env.*
 !.env.example
-
-# Terraform-Zustand und lokale Pläne
-.terraform/
-*.tfstate
-*.tfstate.*
-*.tfplan
-*.tfvars
-*.tfvars.json
-!*.tfvars.example
-
-# Laufzeitdaten und Sicherungen
-/data/
-/backups/
-*.db
-*.sqlite
-*.sqlite3
-*.dump
-
-# TypeScript-Build und lokale Python-Dateien
-node_modules/
-/dist/
-__pycache__/
-*.pyc
