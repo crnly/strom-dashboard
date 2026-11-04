@@ -4,6 +4,8 @@
 
 Eine visuelle Vorlage für ein kleines Energiedashboard, das ich selbst von Grund auf programmieren und in der Cloud betreiben möchte. Energie interessiert mich besonders; öffentlich zugängliche Daten wie die von [Energy-Charts](https://api.energy-charts.info/) bieten dafür eine passende Grundlage.
 
+[Visuelles Zielbild öffnen ↗](https://crnly.github.io/strom-dashboard/prototype/)
+
 ## Features
 
 - Statisches Zielbild im Sketch-Design mit einer Auswahl zwischen Strom und Erdöl (Brent).
@@ -21,6 +23,7 @@ Eine visuelle Vorlage für ein kleines Energiedashboard, das ich selbst von Grun
 | Beispieldaten | JSON, SVG | Eingebettete Daten und Preisdiagramme |
 | Zielbilder | D2, SVG | Diagrammquellen und gerenderte Grafiken |
 | Dokumentation | Markdown, Mermaid | Projektübersicht und kompakter Architekturüberblick |
+| Hosting | GitHub Pages | Online-Vorschau der statischen Vorlage |
 
 </details>
 
@@ -53,7 +56,7 @@ strom-dashboard/
 
 ## Getting Started
 
-Das Repository herunterladen und `prototype/index.html` im Browser öffnen. Ein Build oder Backend wird für die Vorlage nicht benötigt.
+Die Online-Vorlage ist über den Link oben erreichbar. Für die lokale Ansicht das Repository herunterladen und `prototype/index.html` im Browser öffnen. Ein Build oder Backend wird dafür nicht benötigt.
 
 ## Engineering & Quality
 
@@ -61,7 +64,7 @@ Die sieben Referenzen geben meiner persönlichen Weiterentwicklung eine Richtung
 
 - **SOLID:** Verantwortlichkeiten klar trennen und Code verständlich erweiterbar halten.
 - **Test Pyramid:** Funktionen und Schnittstellen gezielt testen. Tests entstehen mit der eigenen Umsetzung.
-- **CI/CD:** Änderungen automatisiert prüfen und reproduzierbar veröffentlichen. Eine Pipeline entsteht mit der eigenen Umsetzung.
+- **CI/CD:** Änderungen automatisiert prüfen und reproduzierbar veröffentlichen. Die statische Vorlage wird bereits über GitHub Pages veröffentlicht; eine Anwendungspipeline entsteht mit der eigenen Umsetzung.
 - **OWASP LLM Top 10:** Sicherheitsrisiken berücksichtigen, sobald LLM-Funktionen hinzukommen. Die Vorlage verwendet keine LLMs.
 - **NIST CSF 2.0:** Sicherheitsrisiken systematisch betrachten und passende Maßnahmen ableiten. Die Bewertung steht noch aus.
 - **ISO 27001:** Informationssicherheit nachvollziehbar organisieren und dokumentieren. Die Bewertung steht noch aus.
@@ -77,7 +80,7 @@ flowchart LR
     Diagrams["D2-Grafiken als SVG"]
 
     User -->|Bedient| Browser
-    Prototype -->|Wird lokal geöffnet| Browser
+    Prototype -->|Lokal oder über GitHub Pages| Browser
     Diagrams -->|Werden geladen| Browser
 ```
 
