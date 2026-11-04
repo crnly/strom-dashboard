@@ -10,6 +10,8 @@ Ein kleines Stromdashboard, an dem ich den Aufbau und Betrieb einer Cloud-Anwend
 - Aufklappbare JSON-Ansicht der geladenen Daten.
 - Systemtour mit D2-Diagrammen zu Architektur, Datenfluss und Deployment.
 
+[Statisches Zielbild öffnen](prototype/index.html): als Datei im Browser öffnen; zeigt Strom und Brent mit erfundenen Werten. Schrift und CSS sind enthalten, die D2-Grafiken werden aus `diagrams/` geladen.
+
 ## Tech Stack
 
 <details>
@@ -55,6 +57,8 @@ strom-dashboard/
 │   └── system.svg                     # Systemarchitektur: Grafik
 ├── frontend/
 │   └── main.ts                        # Daten laden, prüfen und zeichnen
+├── prototype/
+│   └── index.html                     # Statisches Zielbild für die eigene Umsetzung
 ├── tests/
 │   └── contract_test.py               # HTTP-Integrationstest
 ├── .gitignore                         # Lokale Dateien ausschließen
