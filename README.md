@@ -12,6 +12,9 @@ Ein kleines Stromdashboard, an dem ich den Aufbau und Betrieb einer Cloud-Anwend
 
 ## Tech Stack
 
+<details>
+<summary>Technologien anzeigen</summary>
+
 | Bereich | Technologie | Verwendung |
 | --- | --- | --- |
 | Frontend | HTML, CSS, TypeScript | Oberfläche, API-Abfrage und Diagramm; ohne UI-Framework |
@@ -21,7 +24,12 @@ Ein kleines Stromdashboard, an dem ich den Aufbau und Betrieb einer Cloud-Anwend
 | Tests | Python `unittest` und `http.client` | HTTP-Integrationstest gegen einen gestarteten Python-Server |
 | Dokumentation | D2 0.9.0, Mermaid | Ausführliche Zielbilder und kompakter Architekturüberblick |
 
+</details>
+
 ### Projektstruktur
+
+<details>
+<summary>Projektdateien anzeigen</summary>
 
 Versionierte Dateien im Repository:
 
@@ -57,6 +65,8 @@ strom-dashboard/
 ├── package-lock.json                  # Festgeschriebene Abhängigkeiten
 └── tsconfig.json                      # TypeScript-Konfiguration
 ```
+
+</details>
 
 ## Getting Started
 
